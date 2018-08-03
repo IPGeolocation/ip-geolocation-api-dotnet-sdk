@@ -1,0 +1,95 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": "421211055ce6dfa2a7f1fb8ce285f60803667d90"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "ipgeolocation/1.0.0": {
+        "dependencies": {
+          "IpGeoLocation.Io": "1.0.0",
+          "Newtonsoft.Json": "11.0.2",
+          "Rock.Core.Newtonsoft": "0.9.2"
+        },
+        "runtime": {
+          "ipgeolocation.dll": {}
+        }
+      },
+      "IpGeoLocation.Io/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/ipgeolocation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/11.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.2.21924"
+          }
+        }
+      },
+      "Rock.Core/0.9.5": {
+        "runtime": {
+          "lib/net45/Rock.Core.dll": {
+            "assemblyVersion": "0.9.0.0",
+            "fileVersion": "0.9.5.0"
+          }
+        }
+      },
+      "Rock.Core.Newtonsoft/0.9.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2",
+          "Rock.Core": "0.9.5"
+        },
+        "runtime": {
+          "lib/net45/Rock.Core.Newtonsoft.dll": {
+            "assemblyVersion": "0.9.0.0",
+            "fileVersion": "0.9.2.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ipgeolocation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IpGeoLocation.Io/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h6CiN/x5VXYXVydXzSsKrQ1BCzsQUetuepJXYP54dL9OMtV9s4TgAzhiMkMZwE0Ny1ToDi8PdRgLAuQ48q2Vww==",
+      "path": "ipgeolocation.io/1.0.0",
+      "hashPath": "ipgeolocation.io.1.0.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/11.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
+    "Rock.Core/0.9.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-88/u63a+y4rxl+cAmTcz2qUbDvF8i5DQRzazESgwS8jpwBfClC4KQ6fl3gz2MVyxDqA34vW/iwr3223TVm8TBg==",
+      "path": "rock.core/0.9.5",
+      "hashPath": "rock.core.0.9.5.nupkg.sha512"
+    },
+    "Rock.Core.Newtonsoft/0.9.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tiQSH54mKcoPj5aDXvb7zvjJMklt1RczChwtL3lbtfKUZIpwy/11sXcDN8yZyZXluTVEmINeIL+kL5N86Yjv0g==",
+      "path": "rock.core.newtonsoft/0.9.2",
+      "hashPath": "rock.core.newtonsoft.0.9.2.nupkg.sha512"
+    }
+  }
+}

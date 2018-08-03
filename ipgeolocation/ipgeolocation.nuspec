@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IpGeoLocation.IpGeoLocation</id>
+    <version>1.0</version>
+    <title>IpGeoLocation.Io</title>
+    <authors>ipgeolocation.io</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://ipgeolocation.io/static/flags/ipgeo-dark.png</iconUrl>
+    <description>Awesome application logging utility</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2018 (c) Ipgeolocation Corporation. All rights reserved.</copyright>
+    <dependencies>
+    <dependency id="Newtonsoft.Json" version="11.0.2" />
+
+   </dependencies>
+   </metadata>
+   <files>
+    <file src="bin/Debug/netcoreapp2.1/ipgeolocation.dll" target="lib/netcoreapp2.1" />
+   </files>
+</package>
