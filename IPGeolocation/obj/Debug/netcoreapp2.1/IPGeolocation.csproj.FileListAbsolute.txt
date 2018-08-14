@@ -1,0 +1,11 @@
+/home/developer/Projects/IPGeolocation/IPGeolocation/bin/Debug/netcoreapp2.1/IPGeolocation.deps.json
+/home/developer/Projects/IPGeolocation/IPGeolocation/bin/Debug/netcoreapp2.1/IPGeolocation.runtimeconfig.json
+/home/developer/Projects/IPGeolocation/IPGeolocation/bin/Debug/netcoreapp2.1/IPGeolocation.runtimeconfig.dev.json
+/home/developer/Projects/IPGeolocation/IPGeolocation/bin/Debug/netcoreapp2.1/IPGeolocation.dll
+/home/developer/Projects/IPGeolocation/IPGeolocation/bin/Debug/netcoreapp2.1/IPGeolocation.pdb
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.csprojAssemblyReference.cache
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.csproj.CoreCompileInputs.cache
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.AssemblyInfoInputs.cache
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.AssemblyInfo.cs
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.dll
+/home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.pdb
