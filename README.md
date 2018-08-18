@@ -24,17 +24,17 @@ Note: This SDK requires a valid IPGeolocation API key. Sign up if you don’t ha
 ## Installation
 ### Package Manager
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.2
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.3
 ```
 
 ### .NET CLI
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.2
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.3
 ```
 
 ### Paket CLI
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.2
+$ paket add IpGeoLocation.IpGeoLocation --version 1.0.3
 ```
 
 ## IP Geolocation API C# SDK Basic Usage
