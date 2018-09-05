@@ -37,7 +37,7 @@ $ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.3
 $ paket add IpGeoLocation.IpGeoLocation --version 1.0.3
 ```
 
-## IP Geolocation API C# SDK Basic Usage
+## Basic Usage
 ### Setup API
 ```c#
 // Create IPGeolocationAPI object, passing your valid API key
