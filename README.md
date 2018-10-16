@@ -1,50 +1,61 @@
 # IP Geolocation API .NET SDK
 
 ## Introduction
-IPGeolocation API is the solution to identify country code (ISO2 and ISO3 standard), country name, continent code, continent name, country capital, state/province, district, city, zip code, latitude and longitude of city, is country belongs to Europian Union, calling code, top level domain (TLD), languages, country flag, internet service provider (ISP), connection type, organization, geoname ID, currency code, currency name, time zone ID, time zone offset, current time in the time zone, is time zone in daylight saving time, and total daylight savings. This document provides important information to help you get up to speed with IPGeolocation API using IP Geolocation API C# SDK.
+
+[IPGeolocation API](https://ipgeolocation.io) is the solution to identify country code (ISO2 and ISO3 standard), country name, continent code, continent name, country capital, state/province, district, city, zip code, latitude and longitude of city, is country belongs to Europian Union, calling code, top level domain (TLD), languages, country flag, internet service provider (ISP), connection type, organization, geoname ID, currency code, currency name, time zone ID, time zone offset, current time in the time zone, is time zone in daylight saving time, and total daylight savings. This document provides important information to help you get up to speed with IPGeolocation API using IP Geolocation API C# SDK.
 
 Developers can use this C# SDK for software and web projects related to, but not limited to:
 
-* Display native language and currency
-* Redirect based on the country
-* Digital rights management
-* Web log stats and analysis
-* Auto-selection of country, state/province and city on forms
-* Filter access from countries you do not do business with
-* Geo-targeting for increased sales and click-through
+1. Display native language and currency
+2. Redirect based on the country
+3. Digital rights management
+4. Web log stats and analysis
+5. Auto-selection of country, state/province and city on forms
+6. Filter access from countries you do not do business with
+7. Geo-targeting for increased sales and click-through
 
 ## Quick Start Guide
-In this document, you will go through the basic steps to use IP Geolocation API C# SDK.  
+
 You need a valid 'IPGeolocation API key' to use this SDK. [Sign up](https://ipgeolocation.io/signup) here and get your free API key if you don't have one.
 
+**Note:** Complete documentation to use this SDK is also available at [IP Geolocation API .NET SDK Documentation](https://ipgeolocation.io/documentation/ip-geolocation-api-c-sharp-dot-net-sdk-201809031216).
+
 ## System Requirements
+
 IP Geolocation API C# SDK has been developed and tested on .NET Core on Ubuntu.  
 Note: Internet connection is required to run this component.
 
 ## Installation
+
 ### Package Manager
+
 ```cli
 $ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.3
 ```
 
 ### .NET CLI
+
 ```cli
 $ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.3
 ```
 
 ### Paket CLI
+
 ```cli
 $ paket add IpGeoLocation.IpGeoLocation --version 1.0.3
 ```
 
 ## Basic Usage
+
 ### Setup API
+
 ```c#
 // Create IPGeolocationAPI object, passing your valid API key
 IPGeolocationAPI api = new IPGeolocationAPI("YOUR_API_KEY");
 ```
 
 ### Geolocation Lookup
+
 ```c#
 // Query geolocation for IP address (1.1.1.1) and fields (geo, time_zone and currency)
 GeolocationParams geoParams = new GeolocationParams();
@@ -96,6 +107,7 @@ else
 ```
 
 ### Bulk Geolocations Lookup
+
 ```c#
 // Query geolocations for multiple IP addresses and all fields
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
@@ -124,6 +136,7 @@ Console.WriteLine(geolocations[2].GetLatitude());
 ```
 
 ### Time Zone API
+
 ```c#
 // Query time zone information by time zone ID
 TimezoneParams tzParams = new TimezoneParams();
@@ -186,6 +199,7 @@ else
 ```
 
 ## IP Geolocation API C# SDK Objects Reference
+
 IP Geolocation API C# SDK has following classes that you can use to fully leverage it.
 
 ### Class: IPGeolocation.IPGeolocationAPI
