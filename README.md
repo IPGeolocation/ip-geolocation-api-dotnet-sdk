@@ -224,6 +224,8 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetFields() | Get fields set to lookup geolocation. | String |
 | SetIPAddresses(String[] ips) | Set IP addresses to lookup multiple geolocations. Throws ArgumentException if no. of IP addresses are more than 50. Note: Multiple IP addresses lookup is only available for paid users. | void |
 | GetIPAddresses() | Get IP addresses set to lookup bulk geolocations. | String[] |
+| SetLang(String lang) | Sets the lang parameter to query time zone information. Default is 'en'. | void |
+| GetLang() | Returns the lang value used to query time zone information. | String|
 
 ### Class: IPGeolocation.Geolocation
 
@@ -279,11 +281,13 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | ------ | ----------- | ----------- |
 | SetTimezone(String timezone) | Sets time zone ID to query time zone information. | void |
 | GetTimezone() | Get time zone ID set to query time zone information. | String |
-| SetIp(String ip) | Sets IP address to query time zone information. | void |
-| GetIp() | Get IP address set to query time zone information. | String |
+| SetIPAddress(String ip) | Sets IP address to query time zone information. | void |
+| GetIPAddress() | Get IP address set to query time zone information. | String |
 | SetLocation(Double latitude, Double longitude) | Sets latitude and longitude of a location to query time zone information. | void |
 | GetLatitude() | Returns latitude set to query time zone information. | Double |
 | GetLongitude() | Returns longitude set to query time zone information. | Double |
+| SetLang(String lang) | Sets the lang parameter to query time zone information. Default is 'en'. | void |
+| GetLang() | Returns the lang value used to query time zone information. | String|
 
 ### Class: IPGeolocation.Timezone
 
@@ -298,14 +302,15 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetDateTimeTxt() | Returns date-time string in the format “EEEE, MMMM dd, yyyy HH:mm:ss”. | String |
 | GetDateTimeWti() | Returns date-time string in the format “EEE, dd MMM yyyy HH:mm:ss Z”. | String |
 | GetDateTimeYmd() | Returns date-time string in the format “yyyy-MM-dd'T'HH:mm:ssZ”. | String |
+| GetDateTimeUnix() | Returns date-time string as a unix value in seconds. | Double |
 | GetTime24() | Returns current time in the format “HH:mm:ss”. | String |
 | GetTime12() | Returns current time in the format “hh:mm:ss aa”. | String |
 | GetWeek() | Returns current week of the year. | String |
 | GetMonth() | Returns current month of the year. | String |
 | GetYear() | Returns current year. | String |
 | GetYearAbbr() | Returns 2-letters year abbreviation like “18”. | String |
-| isDst() | Returns is the country observing Daylight Saving time. | Boolean |
-| GetDstSavings() | Returns daylight savings time (in hours). | Double |
+| isDST() | Returns is the country observing Daylight Saving time. | Boolean |
+| GetDSTSavings() | Returns daylight savings time (in hours). | Double |
 | GetTimezoneGeo() | Returns geolocation of timezone if you lookup timezone information from an IP address. | TimezoneGeo |
 
 ### Class: IPGeolocation.TimezoneGeo

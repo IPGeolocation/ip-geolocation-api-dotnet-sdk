@@ -14,13 +14,14 @@ namespace IPGeolocation
         private String dateTimeTxt;
         private String dateTimeWti;
         private String dateTimeYmd;
+        private Double dateTimeUnix;
         private String time24;
         private String time12;
         private String week;
         private String month;
         private String year;
         private String yearAbbr;
-        private Boolean isDst { get; set; }
+        private Boolean isDST { get; set; }
         private Double dstSavings;
         private TimezoneGeo timezoneGeo;
 
@@ -58,6 +59,9 @@ namespace IPGeolocation
                 token = json.GetValue("date_time_ymd");
                 this.dateTimeYmd = token != null ? token.ToObject<String>() : null;
 
+                token = json.GetValue("date_time_unix");
+                this.dateTimeUnix = token != null ? token.ToObject<Double>() : null;
+
                 token = json.GetValue("time_24");
                 this.time24 = token != null ? token.ToObject<String>() : null;
 
@@ -77,7 +81,7 @@ namespace IPGeolocation
                 this.yearAbbr = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("is_dst");
-                this.isDst = token != null ? token.ToObject<Boolean>() : false;
+                this.isDST = token != null ? token.ToObject<Boolean>() : false;
 
                 token = json.GetValue("dst_savings");
                 this.dstSavings = token != null ? token.ToObject<Double>() : 0.0;
@@ -135,6 +139,11 @@ namespace IPGeolocation
             return dateTimeYmd;
         }
 
+        public Double GetDateTimeUnix()
+        {
+            return dateTimeUnix;
+        }
+
         public String GetTime24()
         {
             return time24;
@@ -165,7 +174,7 @@ namespace IPGeolocation
             return yearAbbr;
         }
 
-        public Double GetDstSavings()
+        public Double GetDSTSavings()
         {
             return dstSavings;
         }
