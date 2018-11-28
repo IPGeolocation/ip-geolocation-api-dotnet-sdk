@@ -6,20 +6,22 @@ namespace IPGeolocation
         private String ip;
         private String fields;
         private String[] ips;
+        private String lang;
 
         public GeolocationParams()
         {
             this.ip = "";
             this.fields = "";
             this.ips = new String[0];
+            this.lang = "en";
         }
 
-        public void SetIp(String ip)
+        public void SetIPAddress(String ip)
         {
             this.ip = Strings.NullToEmpty(ip);
         }
 
-        public String GetIp()
+        public String GetIPAddress()
         {
             return ip;
         }
@@ -34,7 +36,7 @@ namespace IPGeolocation
             return fields;
         }
 
-        public void SetIps(String[] ips)
+        public void SetIPAddresses(String[] ips)
         {
             if (ips.Length > 50)
             {
@@ -46,9 +48,19 @@ namespace IPGeolocation
             }
         }
 
-        public String[] GetIps()
+        public String[] GetIPAddresses()
         {
             return ips;
+        }
+
+        public void SetLang(String lang)
+        {
+            this.lang = Strings.NullToEmpty(lang);
+        }
+
+        public String GetLang()
+        {
+            return lang;
         }
     }
 }

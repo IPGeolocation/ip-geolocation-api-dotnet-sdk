@@ -7,6 +7,7 @@ namespace IPGeolocation
         private String ip;
         private Double latitude;
         private Double longitude;
+        private String lang;
 
         public TimezoneParams()
         {
@@ -14,6 +15,7 @@ namespace IPGeolocation
             ip = "";
             latitude = 1000.0;
             latitude = 1000.0;
+            this.lang = "en";
         }
 
         public void SetTimezone(String timezone)
@@ -26,12 +28,12 @@ namespace IPGeolocation
             return timezone;
         }
 
-        public void SetIp(String ip)
+        public void SetIPAddress(String ip)
         {
             this.ip = Strings.NullToEmpty(ip);
         }
 
-        public String GetIp()
+        public String GetIPAddress()
         {
             return ip;
         }
@@ -50,6 +52,16 @@ namespace IPGeolocation
         public Double GetLongitude()
         {
             return longitude;
+        }
+
+        public void SetLang(String lang)
+        {
+            this.lang = Strings.NullToEmpty(lang);
+        }
+
+        public String GetLang()
+        {
+            return lang;
         }
     }
 }
