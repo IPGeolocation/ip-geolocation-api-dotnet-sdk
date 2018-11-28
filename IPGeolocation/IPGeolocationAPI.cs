@@ -44,21 +44,32 @@ namespace IPGeolocation
 
         private String BuildGeolocationUrlParams(GeolocationParams geolocationParams)
         {
-            String urlParams = "apiKey=" + apiKey;
+            StringBuilder urlParams = new StringBuilder(80);
+
+            urlParams.Append("apiKey=");
+            urlParams.Append(apiKey);
+            
             if (geolocationParams != null)
             {
-                String ip = geolocationParams.GetIp();
-                if (ip != null && !ip.Equals(""))
+                if (!Strings.IsNullOrEmpty(geolocationParams.GetIPAddress()))
                 {
-                    urlParams = urlParams + "&ip=" + ip;
+                    urlParams.Append("&ip=");
+                    urlParams.Append(geolocationParams.GetIPAddress());
                 }
-                String fields = geolocationParams.GetFields();
-                if (fields != null && !fields.Equals(""))
+                
+                if (!Strings.IsNullOrEmpty(geolocationParams.GetFields()))
                 {
-                    urlParams = urlParams + "&fields=" + fields;
+                    urlParams.Append("&fields=");
+                    urlParams.Append(geolocationParams.GetFields());
+                }
+
+                if(!Strings.IsNullOrEmpty(geolocationParams.GetLang()))
+                {
+                    urlParams.Append("&lang=");
+                    urlParams.Append(geolocationParams.GetLang());
                 }
             }
-            return urlParams;
+            return urlParams.ToString();
         }
 
         public Timezone GetTimezone()
