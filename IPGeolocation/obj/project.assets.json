@@ -525,10 +525,11 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "TT+QCi9LcxGTjBssH7S7n5+8DVcwfG4DYgXX7Dk7+BfZ4oVHj8Q0CbYk9glzAlHLsSt3bYzol+fOdra2iu6GOw==",
+      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
+        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -684,10 +685,12 @@
       ]
     },
     "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "sha512": "znZGbws7E4BA9jxNZ7FuiIRI3C9hrgatVQSTKhIYZYNOud4M5VfGlTYi6RdYO5sQrebFuF/g9UEV3hOxDMXF6Q==",
       "type": "package",
       "path": "newtonsoft.json/11.0.2",
       "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -719,23 +722,23 @@
     ]
   },
   "packageFolders": {
-    "/home/developer/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/Users/usman/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/developer/Projects/IPGeolocation/IPGeolocation/IPGeolocation.csproj",
+      "projectUniqueName": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/IPGeolocation.csproj",
       "projectName": "IPGeolocation",
-      "projectPath": "/home/developer/Projects/IPGeolocation/IPGeolocation/IPGeolocation.csproj",
-      "packagesPath": "/home/developer/.nuget/packages/",
-      "outputPath": "/home/developer/Projects/IPGeolocation/IPGeolocation/obj/",
+      "projectPath": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/IPGeolocation.csproj",
+      "packagesPath": "/Users/usman/.nuget/packages/",
+      "outputPath": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/developer/.nuget/NuGet/NuGet.Config"
+        "/Users/usman/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
