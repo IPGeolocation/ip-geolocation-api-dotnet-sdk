@@ -44,7 +44,7 @@ namespace IPGeolocation
             return currentTime;
         }
 
-        public Double GetDstSavings()
+        public Double GetDSTSavings()
         {
             return dstSavings;
         }

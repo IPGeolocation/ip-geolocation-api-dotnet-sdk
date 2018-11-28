@@ -244,7 +244,7 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetZipCode() | Returns zip code. | String |
 | GetLatitude() | Returns latitude of the city. | Double |
 | GetLongitude() | Returns longitude of the city. | Double |
-| isEu() | Returns is the country in European Union. | Boolean |
+| isEU() | Returns is the country in European Union. | Boolean |
 | GetCallingCode() | Returns country calling code. | String |
 | GetCountryTLD() | Returns country’s top level domain like '.au' for Australia. | String |
 | GetLanguages() | Returns languages spoken in the country. | String |
@@ -271,7 +271,7 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetOffset() | Returns time zone offset from UTC. | Double |
 | GetCurrentTime() | Returns current date-time string in the format “yyyy-MM-dd HH:mm:ss.SSSZ”. | String |
 | isDST() | Returns is the country observing daylight saving time. | Boolean |
-| GetDstSavings() | Returns daylight savings time (in hours). | Double |
+| GetDSTSavings() | Returns daylight savings time (in hours). | Double |
 
 ### Class: IPGeolocation.TimezoneParams
 
