@@ -323,6 +323,6 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetStateProvince() | Returns state/province. | String |
 | GetDistrict() | Returns district. | String |
 | GetCity() | Returns city. | String |
-| GetZipcode() | Returns zip code. | String |
+| GetZipCode() | Returns zip code. | String |
 | GetLatitude() | Returns latitude of the city. | Double |
 | GetLongitude() | Returns longitude of the city. | Double |

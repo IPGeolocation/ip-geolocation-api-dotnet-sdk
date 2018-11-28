@@ -9,7 +9,7 @@ namespace IPGeolocation
         private String countryName;
         private String stateProvince;
         private String city;
-        private String zipcode;
+        private String zipCode;
         private String latitude;
         private String longitude;
 
@@ -31,7 +31,7 @@ namespace IPGeolocation
             this.city = token != null ? token.ToObject<String>() : null;
 
             token = json.GetValue("zipcode");
-            this.zipcode = token != null ? token.ToObject<String>() : null;
+            this.zipCode = token != null ? token.ToObject<String>() : null;
 
             token = json.GetValue("latitude");
             this.latitude = token != null ? token.ToObject<String>() : null;
@@ -65,9 +65,9 @@ namespace IPGeolocation
             return city;
         }
 
-        public String GetZipcode()
+        public String GetZipCode()
         {
-            return zipcode;
+            return zipCode;
         }
 
         public String GetLatitude()
