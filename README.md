@@ -224,8 +224,8 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetFields() | Get fields set to lookup geolocation. | String |
 | SetIPAddresses(String[] ips) | Set IP addresses to lookup multiple geolocations. Throws ArgumentException if no. of IP addresses are more than 50. Note: Multiple IP addresses lookup is only available for paid users. | void |
 | GetIPAddresses() | Get IP addresses set to lookup bulk geolocations. | String[] |
-| SetLang(String lang) | Sets the lang parameter to query time zone information. Default is 'en'. | void |
-| GetLang() | Returns the lang value used to query time zone information. | String|
+| SetLang(String lang) | Sets the language parameter to query time zone information. Default is 'en'. | void |
+| GetLang() | Returns the language value used to query time zone information. | String|
 
 ### Class: IPGeolocation.Geolocation
 
@@ -286,8 +286,8 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | SetLocation(Double latitude, Double longitude) | Sets latitude and longitude of a location to query time zone information. | void |
 | GetLatitude() | Returns latitude set to query time zone information. | Double |
 | GetLongitude() | Returns longitude set to query time zone information. | Double |
-| SetLang(String lang) | Sets the lang parameter to query time zone information. Default is 'en'. | void |
-| GetLang() | Returns the lang value used to query time zone information. | String|
+| SetLang(String lang) | Sets the language parameter to query time zone information. Default is 'en'. | void |
+| GetLang() | Returns the language value used to query time zone information. | String|
 
 ### Class: IPGeolocation.Timezone
 
