@@ -86,30 +86,37 @@ namespace IPGeolocation
 
         private String BuildTimezoneUrlParams(TimezoneParams timezoneParams)
         {
-            String urlParams = "apiKey=" + apiKey;
+            StringBuilder urlParams = new StringBuilder(80);
 
+            urlParams.Append("apiKey=");
+            urlParams.Append(apiKey);
+            
             if (timezoneParams != null)
             {
-                String param = timezoneParams.GetIp();
-                if (!param.Equals(""))
+                if (!Strings.IsNullOrEmpty(timezoneParams.GetIPAddress()))
                 {
-                    urlParams = urlParams + "&ip=" + param;
+                    urlParams.Append("&ip=");
+                    urlParams.Append(timezoneParams.GetIPAddress());
                 }
 
-                param = timezoneParams.GetTimezone();
-                if (!param.Equals(""))
+                if (!Strings.IsNullOrEmpty(timezoneParams.GetTimezone()))
                 {
-                    urlParams = urlParams + "&tz=" + param;
+                    urlParams.Append("&tz=");
+                    urlParams.Append(timezoneParams.GetTimezone());
                 }
 
-                Double latitude = timezoneParams.GetLatitude();
-                Double longitude = timezoneParams.GetLongitude();
-                if (latitude >= 1000.0 && longitude >= 1000.0)
+                if (timezoneParams.GetLatitude() >= 1000.0 && timezoneParams.GetLongitude() >= 1000.0)
                 {
                     urlParams = urlParams + "&lat=" + latitude + "&long=" + longitude;
                 }
+
+                if(!Strings.IsNullOrEmpty(timezoneParams.GetLang()))
+                {
+                    urlParams.Append("&lang=");
+                    urlParams.Append(timezoneParams.GetLang());
+                }
             }
-            return urlParams;
+            return urlParams.ToString();
         }
 
         private JObject GetApiResponse(String api, String urlParams)

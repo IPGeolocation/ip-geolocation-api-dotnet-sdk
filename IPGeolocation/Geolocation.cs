@@ -17,18 +17,18 @@ namespace IPGeolocation
         private String stateProvince;
         private String district;
         private String city;
-        private String zipcode;
+        private String zipCode;
         private String latitude;
         private String longitude;
-        private Boolean isEu { get; set; }
+        private Boolean isEU { get; set; }
         private String callingCode;
-        private String countryTld;
+        private String countryTLD;
         private String languages;
         private String countryFlag;
         private String isp;
         private String connectionType;
         private String organization;
-        private String geonameId;
+        private String geonameID;
         private GeolocationCurrency currency;
         private GeolocationTimezone timezone;
 
@@ -76,7 +76,7 @@ namespace IPGeolocation
                 this.city = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("zipcode");
-                this.zipcode = token != null ? token.ToObject<String>() : null;
+                this.zipCode = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("latitude");
                 this.latitude = token != null ? token.ToObject<String>() : null;
@@ -85,13 +85,13 @@ namespace IPGeolocation
                 this.longitude = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("is_eu");
-                this.isEu = token != null ? token.ToObject<Boolean>() : false;
+                this.isEU = token != null ? token.ToObject<Boolean>() : false;
 
                 token = json.GetValue("calling_code");
                 this.callingCode = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("country_tld");
-                this.countryTld = token != null ? token.ToObject<String>() : null;
+                this.countryTLD = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("languages");
                 this.languages = token != null ? token.ToObject<String>() : null;
@@ -109,7 +109,7 @@ namespace IPGeolocation
                 this.organization = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("geoname_id");
-                this.geonameId = token != null ? token.ToObject<String>() : null;
+                this.geonameID = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("currency");
                 JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
@@ -131,7 +131,7 @@ namespace IPGeolocation
             return message;
         }
 
-        public String GetIp()
+        public String GetIPAddress()
         {
             return ip;
         }
@@ -180,9 +180,9 @@ namespace IPGeolocation
             return city;
         }
 
-        public String GetZipcode()
+        public String GetZipCode()
         {
-            return zipcode;
+            return zipCode;
         }
 
         public String GetLatitude()
@@ -199,9 +199,9 @@ namespace IPGeolocation
             return callingCode;
         }
 
-        public String GetCountryTld()
+        public String GetCountryTLD()
         {
-            return countryTld;
+            return countryTLD;
         }
 
         public String GetLanguages()
@@ -214,7 +214,7 @@ namespace IPGeolocation
             return countryFlag;
         }
 
-        public String GetIsp()
+        public String GetISP()
         {
             return isp;
         }
@@ -229,9 +229,9 @@ namespace IPGeolocation
             return organization;
         }
 
-        public String GetGeonameId()
+        public String GetGeonameID()
         {
-            return geonameId;
+            return geonameID;
         }
 
         public GeolocationCurrency GetCurrency()

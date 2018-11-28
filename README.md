@@ -30,19 +30,19 @@ Note: Internet connection is required to run this component.
 ### Package Manager
 
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.3
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.4
 ```
 
 ### .NET CLI
 
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.3
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.4
 ```
 
 ### Paket CLI
 
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.3
+$ paket add IpGeoLocation.IpGeoLocation --version 1.0.4
 ```
 
 ## Basic Usage
@@ -59,7 +59,7 @@ IPGeolocationAPI api = new IPGeolocationAPI("YOUR_API_KEY");
 ```c#
 // Query geolocation for IP address (1.1.1.1) and fields (geo, time_zone and currency)
 GeolocationParams geoParams = new GeolocationParams();
-geoParams.SetIp("1.1.1.1");
+geoParams.SetIPAddress("1.1.1.1");
 geoParams.SetFields("geo,time_zone,currency");
 
 Geolocation geolocation = api.GetGeolocation(geoParams);
@@ -84,7 +84,7 @@ Geolocation geolocation = api.GetGeolocation(geoParams);
 
 if(geolocation.GetStatus() == 200)
 {
-    Console.WriteLine(geolocation.GetIp());
+    Console.WriteLine(geolocation.GetIPAddress());
     Console.WriteLine(geolocation.GetCountryName());
 }
 else
@@ -112,7 +112,7 @@ else
 // Query geolocations for multiple IP addresses and all fields
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
 GeolocationParams geoParams = new GeolocationParams();
-geoParams.SetIps(ips);
+geoParams.SetIPAddresses(ips);
 
 List<Geolocation> geolocations = api.GetBulkGeolocation(geoParams);
 
@@ -124,7 +124,7 @@ Console.WriteLine(geolocations[2].GetTimezone().GetCurrentTime());
 // Query geolocations for multiple IP addresses but only geo field
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
 GeolocationParams geoParams = new GeolocationParams();
-geoParams.SetIps(ips);
+geoParams.SetIPAddresses(ips);
 geoParams.SetFields("geo");
 
 List<Geolocation> geolocations = api.GetBulkGeolocation(geoParams);
@@ -218,12 +218,12 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| SetIp(String ip) | Sets IP address to lookup geolocation. | void |
-| GetIp() | Get IP address set to lookup geolocation. | String |
+| SetIPAddress(String ip) | Sets IP address to lookup geolocation. | void |
+| GetIPAddress() | Get IP address set to lookup geolocation. | String |
 | SetFields(String fields) | Set fields to lookup geolocation. | void |
 | GetFields() | Get fields set to lookup geolocation. | String |
-| SetIps(String[] ips) | Set IP addresses to lookup multiple geolocations. Throws ArgumentException if no. of IP addresses are more than 50. Note: Multiple IP addresses lookup is only available for paid users. | void |
-| GetIps() | Get IP addresses set to lookup bulk geolocations. | String[] |
+| SetIPAddresses(String[] ips) | Set IP addresses to lookup multiple geolocations. Throws ArgumentException if no. of IP addresses are more than 50. Note: Multiple IP addresses lookup is only available for paid users. | void |
+| GetIPAddresses() | Get IP addresses set to lookup bulk geolocations. | String[] |
 
 ### Class: IPGeolocation.Geolocation
 
@@ -231,7 +231,7 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | ------ | ----------- | ----------- |
 | GetStatus() | Returns HTTP status of the geolocation query. 200 is the successful query status. | Integer |
 | GetMessage() | Returns error message, if the query was not successful. | String |
-| GetIp() | Returns IP address of the geolocation. | String |
+| GetIPAddress() | Returns IP address of the geolocation. | String |
 | GetContinentCode() | Returns 2-letters continent code. | String |
 | GetContinentName() | Returns continent name. | String |
 | GetCountryCode2() | Returns 2-letters country code. | String |
@@ -241,18 +241,18 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetStateProvince() | Returns state/province. | String |
 | GetDistrict() | Returns district. | String |
 | GetCity() | Returns city. | String |
-| GetZipcode() | Returns zip code. | String |
+| GetZipCode() | Returns zip code. | String |
 | GetLatitude() | Returns latitude of the city. | Double |
 | GetLongitude() | Returns longitude of the city. | Double |
 | isEu() | Returns is the country in European Union. | Boolean |
 | GetCallingCode() | Returns country calling code. | String |
-| GetCountryTld() | Returns country’s top level domain like '.au' for Australia. | String |
+| GetCountryTLD() | Returns country’s top level domain like '.au' for Australia. | String |
 | GetLanguages() | Returns languages spoken in the country. | String |
 | GetCountryFlag() | Returns a URL to country’s flag. | String |
-| GetIsp() | Returns ISP name. | String |
+| GetISP() | Returns ISP name. | String |
 | GetConnectionType() | Returns connection type of the IP address. | String |
 | GetOrganization() | Returns organization using the IP address. | String |
-| GetGeonameId() | Returns geoname ID from geonames.org database. | String |
+| GetGeonameID() | Returns geoname ID from geonames.org database. | String |
 | GetCurrency() | Returns currency information of the country. | GeolocationCurrency |
 | GetTimezone() | Returns time zone information of the country. | GeolocationTimezone |
 
