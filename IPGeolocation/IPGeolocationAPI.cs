@@ -107,7 +107,10 @@ namespace IPGeolocation
 
                 if (timezoneParams.GetLatitude() >= 1000.0 && timezoneParams.GetLongitude() >= 1000.0)
                 {
-                    urlParams = urlParams + "&lat=" + latitude + "&long=" + longitude;
+                    urlParams.Append("&lat=");
+                    urlParams.Append(timezoneParams.GetLatitude());
+                    urlParams.Append("&long=");
+                    urlParams.Append(timezoneParams.GetLongitude());
                 }
 
                 if(!Strings.IsNullOrEmpty(timezoneParams.GetLang()))
@@ -143,7 +146,7 @@ namespace IPGeolocation
         {
             Dictionary<string, Object> json = new Dictionary<string, Object>();
 
-            json.Add("ips", geolocationParams.GetIps());
+            json.Add("ips", geolocationParams.GetIPAddresses());
             string jsonStr = JsonConvert.SerializeObject(json);
 
             String urlParams = BuildGeolocationUrlParams(geolocationParams);
