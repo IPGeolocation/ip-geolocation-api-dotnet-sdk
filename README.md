@@ -30,19 +30,19 @@ Note: Internet connection is required to run this component.
 ### Package Manager
 
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.4
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.5
 ```
 
 ### .NET CLI
 
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.4
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.5
 ```
 
 ### Paket CLI
 
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.4
+$ paket add IpGeoLocation.IpGeoLocation --version 1.0.5
 ```
 
 ## Basic Usage
@@ -78,7 +78,7 @@ else
 
 // Query geolocation for IP address (1.1.1.1) and all fields
 GeolocationParams geoParams = new GeolocationParams();
-geoParams.SetIp("1.1.1.1");
+geoParams.SetIPAddress("1.1.1.1");
 
 Geolocation geolocation = api.GetGeolocation(geoParams);
 
@@ -171,7 +171,7 @@ else
 
 // Query time zone information for IP address (1.1.1.1)
 TimezoneParams tzParams = new TimezoneParams();
-tzParams.SetIp("1.1.1.1");
+tzParams.SetIPAddress("1.1.1.1");
 
 Timezone tz = api.GetTimezone(tzParams);
 
