@@ -60,7 +60,7 @@ namespace IPGeolocation
                 this.dateTimeYmd = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("date_time_unix");
-                this.dateTimeUnix = token != null ? token.ToObject<Double>() : null;
+                this.dateTimeUnix = token != null ? token.ToObject<Double>() : 0.0;
 
                 token = json.GetValue("time_24");
                 this.time24 = token != null ? token.ToObject<String>() : null;

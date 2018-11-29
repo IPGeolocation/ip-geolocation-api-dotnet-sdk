@@ -7,7 +7,7 @@ namespace IPGeolocation
 	{
         private int status;
         private String message;
-        private String ip;
+        private String ipAddress;
         private String continentCode;
         private String continentName;
         private String countryCode2;
@@ -46,7 +46,7 @@ namespace IPGeolocation
             else
             {
                 token = json.GetValue("ip");
-                this.ip = token != null ? token.ToObject<String>() : null;
+                this.ipAddress = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("continent_code");
                 this.continentCode = token != null ? token.ToObject<String>() : null;
@@ -133,7 +133,7 @@ namespace IPGeolocation
 
         public String GetIPAddress()
         {
-            return ip;
+            return ipAddress;
         }
 
         public String GetContinentCode()

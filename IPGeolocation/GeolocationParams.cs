@@ -3,27 +3,27 @@ namespace IPGeolocation
 {
     public class GeolocationParams
 	{
-        private String ip;
+        private String ipAddress;
         private String fields;
-        private String[] ips;
+        private String[] ipAddresses;
         private String lang;
 
         public GeolocationParams()
         {
-            this.ip = "";
+            this.ipAddress = "";
             this.fields = "";
-            this.ips = new String[0];
+            this.ipAddresses = new String[0];
             this.lang = "en";
         }
 
-        public void SetIPAddress(String ip)
+        public void SetIPAddress(String ipAddress)
         {
-            this.ip = Strings.NullToEmpty(ip);
+            this.ipAddress = Strings.NullToEmpty(ipAddress);
         }
 
         public String GetIPAddress()
         {
-            return ip;
+            return ipAddress;
         }
 
         public void SetFields(String fields)
@@ -36,21 +36,21 @@ namespace IPGeolocation
             return fields;
         }
 
-        public void SetIPAddresses(String[] ips)
+        public void SetIPAddresses(String[] ipAddresses)
         {
-            if (ips.Length > 50)
+            if (ipAddresses.Length > 50)
             {
                 throw new ArgumentException("Max. number of IP addresses cannot be more than 50.");
             }
             else
             {
-                this.ips = ips;
+                this.ipAddresses = ipAddresses;
             }
         }
 
         public String[] GetIPAddresses()
         {
-            return ips;
+            return ipAddresses;
         }
 
         public void SetLang(String lang)

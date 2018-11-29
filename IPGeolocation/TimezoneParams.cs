@@ -4,7 +4,7 @@ namespace IPGeolocation
     public class TimezoneParams
 	{
         private String timezone;
-        private String ip;
+        private String ipAddress;
         private Double latitude;
         private Double longitude;
         private String lang;
@@ -12,7 +12,7 @@ namespace IPGeolocation
         public TimezoneParams()
         {
             timezone = "";
-            ip = "";
+            ipAddress = "";
             latitude = 1000.0;
             latitude = 1000.0;
             this.lang = "en";
@@ -28,14 +28,14 @@ namespace IPGeolocation
             return timezone;
         }
 
-        public void SetIPAddress(String ip)
+        public void SetIPAddress(String ipAddress)
         {
-            this.ip = Strings.NullToEmpty(ip);
+            this.ipAddress = Strings.NullToEmpty(ipAddress);
         }
 
         public String GetIPAddress()
         {
-            return ip;
+            return ipAddress;
         }
 
         public void SetLocation(Double latitude, Double longitude)
