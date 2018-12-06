@@ -26,38 +26,31 @@ IP Geolocation API C# SDK has been developed and tested on .NET Core on Ubuntu.
 Note: Internet connection is required to run this component.
 
 ## Installation
-
 ### Package Manager
-
 ```cli
 $ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.5
 ```
 
 ### .NET CLI
-
 ```cli
 $ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.5
 ```
 
 ### Paket CLI
-
 ```cli
 $ paket add IpGeoLocation.IpGeoLocation --version 1.0.5
 ```
 
 ## Basic Usage
-
 ### Setup API
-
 ```c#
 // Create IPGeolocationAPI object, passing your valid API key
 IPGeolocationAPI api = new IPGeolocationAPI("YOUR_API_KEY");
 ```
 
 ### Geolocation Lookup
-
 ```c#
-// Query geolocation for IP address (1.1.1.1) and fields (geo, time_zone and currency)
+// Get geolocation for IP address (1.1.1.1) and fields (geo, time_zone and currency)
 GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddress("1.1.1.1");
 geoParams.SetFields("geo,time_zone,currency");
@@ -76,12 +69,14 @@ else
     Console.WriteLine(geolocation.GetMessage());
 }
 
-// Query geolocation for IP address (1.1.1.1) and all fields
+// Get geolocation in Russian** for IP address (1.1.1.1) and all fields
 GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddress("1.1.1.1");
+geoParams.SetLang("ru");
 
 Geolocation geolocation = api.GetGeolocation(geoParams);
 
+// Check if geolocation lookup was successful
 if(geolocation.GetStatus() == 200)
 {
     Console.WriteLine(geolocation.GetIPAddress());
@@ -107,12 +102,12 @@ else
 ```
 
 ### Bulk Geolocations Lookup
-
 ```c#
-// Query geolocations for multiple IP addresses and all fields
+// Query geolocation in German** for multiple IP addresses and all fields
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
 GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddresses(ips);
+geoParams.setLang("de");
 
 List<Geolocation> geolocations = api.GetBulkGeolocation(geoParams);
 
@@ -135,8 +130,7 @@ Console.WriteLine(geolocations[1].GetCountryName());
 Console.WriteLine(geolocations[2].GetLatitude());
 ```
 
-### Time Zone API
-
+### Timezone API
 ```c#
 // Query time zone information by time zone ID
 TimezoneParams tzParams = new TimezoneParams();
@@ -169,9 +163,10 @@ else
     Console.WriteLine(tz.GetMessage());
 }
 
-// Query time zone information for IP address (1.1.1.1)
+// Get time zone information for IP address (1.1.1.1) and geolocation information Japanese**
 TimezoneParams tzParams = new TimezoneParams();
 tzParams.SetIPAddress("1.1.1.1");
+tzParams.setLang("ja");
 
 Timezone tz = api.GetTimezone(tzParams);
 
@@ -197,6 +192,19 @@ else
     Console.WriteLine(tz.GetMessage());
 }
 ```
+
+** IPGeolocation provides geolocation information in the following languages:
+* English (en)
+* German (de)
+* Russian (ru)
+* Japanese (ja)
+* French (fr)
+* Chinese Simplified (cn)
+* Spanish (es)
+* Czech (cs)
+* Italian (it)
+
+By default, geolocation information is returned in English. Response in a language other than English is available to paid users only.
 
 ## IP Geolocation API C# SDK Objects Reference
 
