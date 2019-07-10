@@ -20,7 +20,7 @@ namespace IPGeolocation
         private String zipCode;
         private String latitude;
         private String longitude;
-        private Boolean isEU 
+        private Boolean isEU; 
         private String callingCode;
         private String countryTLD;
         private String languages;
