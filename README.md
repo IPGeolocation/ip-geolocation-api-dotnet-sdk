@@ -28,17 +28,17 @@ Note: Internet connection is required to run this component.
 ## Installation
 ### Package Manager
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.5
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.7
 ```
 
 ### .NET CLI
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.5
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.7
 ```
 
 ### Paket CLI
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.5
+$ paket add IpGeoLocation.IpGeoLocation --version 1.0.7
 ```
 
 ## Basic Usage
@@ -263,6 +263,8 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetConnectionType() | Returns connection type of the IP address. | String |
 | GetOrganization() | Returns organization using the IP address. | String |
 | GetGeonameID() | Returns geoname ID from geonames.org database. | String |
+| GetASN() | Returns AS number of the IP address. | String |
+| GetRoute() | Returns bgp route of the IP address. | String |
 | GetCurrency() | Returns currency information of the country. | GeolocationCurrency |
 | GetTimezone() | Returns time zone information of the country. | GeolocationTimezone |
 

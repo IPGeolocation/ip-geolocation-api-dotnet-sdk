@@ -29,6 +29,8 @@ namespace IPGeolocation
         private String connectionType;
         private String organization;
         private String geonameID;
+        private String asn;
+        private String route;
         private GeolocationCurrency currency;
         private GeolocationTimezone timezone;
 
@@ -111,6 +113,12 @@ namespace IPGeolocation
                 token = json.GetValue("geoname_id");
                 this.geonameID = token != null ? token.ToObject<String>() : null;
 
+                token = json.GetValue("route");
+                this.route = token != null ? token.ToObject<String>() : null;
+
+                token = json.GetValue("asn");
+                this.asn = token != null ? token.ToObject<String>() : null;
+ 
                 token = json.GetValue("currency");
                 JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
                 this.currency = new GeolocationCurrency(currencyJson);
@@ -195,7 +203,7 @@ namespace IPGeolocation
             return longitude;
         }
 	    
-	public Boolean GetIsEU()
+	    public Boolean GetIsEU()
         {
             return isEU;
         }
@@ -244,6 +252,16 @@ namespace IPGeolocation
             return geonameID;
         }
 
+        public String GetASN()
+        {
+            return asn;
+        }
+
+        public String GetRoute()
+        {
+            return route;
+        }
+        
         public GeolocationCurrency GetCurrency()
         {
             return currency;
