@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IPGeolocation.IPGeolocation</id>
+    <version>1.0.8</version>
+    <title>IPGeoLocation API SDK</title>
+    <authors>ipgeolocation.io</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://ipgeolocation.io/static/flags/ipgeo-dark.png</iconUrl>
+    <description>Use this SDK to fully leverage IPGeolocation API</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2018 (c) Ipgeolocation Corporation. All rights reserved.</copyright>
+    <dependencies>
+    <dependency id="Newtonsoft.Json" version="11.0.2" />
+
+   </dependencies>
+   </metadata>
+   <files>
+    <file src="bin/Debug/netcoreapp2.1/ipgeolocation.dll" target="lib/netcoreapp2.1" />
+   </files>
+</package>

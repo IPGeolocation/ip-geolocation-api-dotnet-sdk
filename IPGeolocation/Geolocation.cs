@@ -30,7 +30,6 @@ namespace IPGeolocation
         private String organization;
         private String geonameID;
         private String asn;
-        private String route;
         private GeolocationCurrency currency;
         private GeolocationTimezone timezone;
 
@@ -112,9 +111,6 @@ namespace IPGeolocation
 
                 token = json.GetValue("geoname_id");
                 this.geonameID = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("route");
-                this.route = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("asn");
                 this.asn = token != null ? token.ToObject<String>() : null;
@@ -255,11 +251,6 @@ namespace IPGeolocation
         public String GetASN()
         {
             return asn;
-        }
-
-        public String GetRoute()
-        {
-            return route;
         }
         
         public GeolocationCurrency GetCurrency()
