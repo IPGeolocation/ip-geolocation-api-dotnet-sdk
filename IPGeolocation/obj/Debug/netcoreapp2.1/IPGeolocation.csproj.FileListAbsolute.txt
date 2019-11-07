@@ -9,3 +9,9 @@
 /home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.AssemblyInfo.cs
 /home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.dll
 /home/developer/Projects/IPGeolocation/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.pdb
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.csprojAssemblyReference.cache
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.csproj.CoreCompileInputs.cache
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.AssemblyInfoInputs.cache
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.AssemblyInfo.cs
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.dll
+/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj/Debug/netcoreapp2.1/IPGeolocation.pdb

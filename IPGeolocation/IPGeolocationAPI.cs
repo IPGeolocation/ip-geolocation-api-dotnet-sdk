@@ -10,6 +10,12 @@ namespace IPGeolocation
 {
     public class IPGeolocationAPI
 	{
+        // Main Method 
+        static public void Main(String[] args)
+        {
+
+            Console.WriteLine("Main Method");
+        }
         private String apiKey;
 
         public IPGeolocationAPI(String apiKey)

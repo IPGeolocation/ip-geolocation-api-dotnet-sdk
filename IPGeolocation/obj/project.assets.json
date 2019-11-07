@@ -525,7 +525,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
+      "sha512": "GmkKfoyerqmsHMn7OZj0AKpcBabD+GaafqphvX2Mw406IwiJRy1pKcKqdCfKJfYmkRyJ6+e+RaUylgdJoDa1jQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
@@ -722,23 +722,23 @@
     ]
   },
   "packageFolders": {
-    "/Users/usman/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/home/developer/.nuget/packages/": {},
+    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/IPGeolocation.csproj",
+      "projectUniqueName": "/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/IPGeolocation.csproj",
       "projectName": "IPGeolocation",
-      "projectPath": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/IPGeolocation.csproj",
-      "packagesPath": "/Users/usman/.nuget/packages/",
-      "outputPath": "/Users/usman/Works/ipgeolocation/ipgeolocation-csharp-sdk/IPGeolocation/obj/",
+      "projectPath": "/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/IPGeolocation.csproj",
+      "packagesPath": "/home/developer/.nuget/packages/",
+      "outputPath": "/home/developer/dotnet-ipgeolocation9/ip-geolocation-api-dotnet-sdk/IPGeolocation/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/usman/.nuget/NuGet/NuGet.Config"
+        "/home/developer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -761,6 +761,7 @@
       "netcoreapp2.1": {
         "dependencies": {
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

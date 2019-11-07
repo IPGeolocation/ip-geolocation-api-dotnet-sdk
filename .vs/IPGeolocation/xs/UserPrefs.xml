@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{5F73CAA8-4E60-4329-B146-87472FB8054D}|Default">
+  <MonoDevelop.Ide.ItemProperties.IPGeolocation PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="IPGeolocation/IPGeolocationAPI.cs">
+    <Files>
+      <File FileName="IPGeolocation/Geolocation.cs" Line="259" Column="10" />
+      <File FileName="IPGeolocation/IPGeolocationAPI.cs" Line="10" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

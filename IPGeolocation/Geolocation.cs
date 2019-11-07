@@ -257,10 +257,5 @@ namespace IPGeolocation
         {
             return currency;
         }
-
-        public GeolocationTimezone GetTimezone()
-        {
-            return timezone;
-        }
     }
 }

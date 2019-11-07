@@ -28,17 +28,17 @@ Note: Internet connection is required to run this component.
 ## Installation
 ### Package Manager
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.8
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.9
 ```
 
 ### .NET CLI
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.8
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.9
 ```
 
 ### Paket CLI
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.8
+$ paket add IpGeoLocation.IpGeoLocation --version 1.0.9
 ```
 
 ## Basic Usage
@@ -54,6 +54,7 @@ IPGeolocationAPI api = new IPGeolocationAPI("YOUR_API_KEY");
 GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddress("1.1.1.1");
 geoParams.SetFields("geo,time_zone,currency");
+geoParams.SetIncludeSecurity(true);
 
 Geolocation geolocation = api.GetGeolocation(geoParams);
 
@@ -63,6 +64,15 @@ if(geolocation.GetStatus() == 200)
     Console.WriteLine(geolocation.GetCountryName());
     Console.WriteLine(geolocation.GetCurrency().GetName());
     Console.WriteLine(geolocation.GetTimezone().GetCurrentTime());
+
+    Console.WriteLine(geolocation.GetTimezone().GetCurrentTime());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetTor());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetProxy());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetProxyType());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetAnonymous());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetThreatScore());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetCloudProvider());
+    Console.WriteLine(geolocation.GetGeolocationSecurity().GetKnownAttacker());
 }
 else
 {

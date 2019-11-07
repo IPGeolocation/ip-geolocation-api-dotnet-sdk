@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>IPGeolocation.IPGeolocation</id>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <title>IPGeoLocation API SDK</title>
     <authors>ipgeolocation.io</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
