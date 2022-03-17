@@ -4,28 +4,34 @@ namespace IPGeolocation
 {
     public class TimezoneGeo
 	{
+        private String countryName;
         private String countryCode2;
         private String countryCode3;
-        private String countryName;
         private String stateProvince;
+        private String district;
         private String city;
         private String zipCode;
         private String latitude;
         private String longitude;
 
+        public TimezoneGeo(){
+        }
         public TimezoneGeo(JObject json)
         {
-            JToken token = json.GetValue("country_code2");
+            JToken token = json.GetValue("country_name");
+            this.countryName = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_code2");
             this.countryCode2 = token != null ? token.ToObject<String>() : null;
 
             token = json.GetValue("country_code3");
             this.countryCode3 = token != null ? token.ToObject<String>() : null;
 
-            token = json.GetValue("country_name");
-            this.countryName = token != null ? token.ToObject<String>() : null;
-
             token = json.GetValue("state_prov");
             this.stateProvince = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("district");
+            this.district = token != null ? token.ToObject<String>() : null;
 
             token = json.GetValue("city");
             this.city = token != null ? token.ToObject<String>() : null;
@@ -40,6 +46,11 @@ namespace IPGeolocation
             this.longitude = token != null ? token.ToObject<String>() : null;
         }
 
+        public String GetCountryName()
+        {
+            return countryName;
+        }
+
         public String GetCountryCode2()
         {
             return countryCode2;
@@ -50,14 +61,14 @@ namespace IPGeolocation
             return countryCode3;
         }
 
-        public String GetCountryName()
-        {
-            return countryName;
-        }
-
         public String GetStateProvince()
         {
             return stateProvince;
+        }
+
+        public String GetDistrict()
+        {
+            return district;
         }
 
         public String GetCity()

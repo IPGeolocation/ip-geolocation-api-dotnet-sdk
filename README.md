@@ -1,8 +1,7 @@
 # IP Geolocation API .NET SDK
 
 ## Introduction
-
-[IPGeolocation API](https://ipgeolocation.io) is the solution to identify country code (ISO2 and ISO3 standard), country name, continent code, continent name, country capital, state/province, district, city, zip code, latitude and longitude of city, is country belongs to Europian Union, calling code, top level domain (TLD), languages, country flag, internet service provider (ISP), connection type, organization, geoname ID, currency code, currency name, time zone ID, time zone offset, current time in the time zone, is time zone in daylight saving time, and total daylight savings. This document provides important information to help you get up to speed with IPGeolocation API using IP Geolocation API C# SDK.
+[IPGeolocation API](https://ipgeolocation.io) is the solution to identify country code (ISO2 and ISO3 standard), country name, continent code, continent name, country capital, state/province, district, city, zip code, latitude and longitude of city, is country belongs to Europian Union, calling code, top level domain (TLD), languages, country flag, internet service provider (ISP), connection type, organization, geoname ID, currency code, currency name, time zone ID, time zone offset, current time in the time zone, is time zone in daylight saving time, total daylight savings and user agent details. This document provides important information to help you get up to speed with IPGeolocation API using IP Geolocation API C# SDK.
 
 Developers can use this C# SDK for software and web projects related to, but not limited to:
 
@@ -72,7 +71,7 @@ if(geolocation.GetStatus() == 200)
     Console.WriteLine(geolocation.GetGeolocationSecurity().GetAnonymous());
     Console.WriteLine(geolocation.GetGeolocationSecurity().GetThreatScore());
     Console.WriteLine(geolocation.GetGeolocationSecurity().GetCloudProvider());
-    Console.WriteLine(geolocation.GetGeolocationSecurity().GetKnownAttacker());
+    Console.WriteLine(geolocation.GetUserAgent().GetUserAgentDevice().GetName());
 }
 else
 {
@@ -224,124 +223,199 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| IPGeolocationAPI(String apiKey) | Construct the IPGeolocationAPI object. It takes a valid apiKey as parameter and throws ArgumentException if apiKey is empty or null. ||
-| GetGeolocation() | This function to query Geolocation API. | Geolocation |
-| GetGeolocation(GeolocationParams params) | This function to query Geolocation API based on the parameters passed. | Geolocation |
-| GetTimezone() | This function to query Timezone API based on calling machine's IP address. | Timezone |
-| GetTimezone(TimezoneParams params) | This function to query Timezone API based on the parameters passed. | Timezone |
-| GetBulkGeolocation(GeolocationParams params) | This function to query Geolocation API to lookup multiple IP addresses (max. 50). | List<Geolocation> |
-| GetApiKey() | This function to get the API key that you set to query the IPGeolocation API. | String |
+| IPGeolocationAPI(String apiKey)                         | Constructs the IPGeolocationAPI object and takes a valid apiKey as parameter. It throws ArgumentException for empty/null apiKey. ||
+| GetApiKey()                                             | This function to get the API key that you set to query the IPGeolocation API.                | String            |
+| GetGeolocation()                                        | This function to query Geolocation API.                                                      | Geolocation       |
+| GetGeolocation(GeolocationParams geolocationParams)     | This function to query Geolocation API based on the parameters passed.                       | Geolocation       |
+| GetBulkGeolocation(GeolocationParams geolocationParams) | This function to query Geolocation API to lookup multiple IP addresses (max. 50).            | List<Geolocation> |
+| GetTimezone()                                           | This function to query Timezone API based on calling machine's IP address.                   | Timezone          |
+| GetTimezone(TimezoneParams timezoneParams)              | This function to query Timezone API based on the parameters passed.                          | Timezone          |
+| GetUserAgent(String uaString)                           | This function to query UserAgent API.                                                        | UserAgent         |
+| GetBulkUserAgent(List<String> uaStrings)                | This function to query UserAgent API to lookup multiple user-agent strings (max. 50).        | List\<UserAgent\> |
 
 ### Class: IPGeolocation.GeolocationParams
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| SetIPAddress(String ip) | Sets IP address to lookup geolocation. | void |
-| GetIPAddress() | Get IP address set to lookup geolocation. | String |
-| SetFields(String fields) | Set fields to lookup geolocation. | void |
-| GetFields() | Get fields set to lookup geolocation. | String |
-| SetIPAddresses(String[] ips) | Set IP addresses to lookup multiple geolocations. Throws ArgumentException if no. of IP addresses are more than 50. Note: Multiple IP addresses lookup is only available for paid users. | void |
-| GetIPAddresses() | Get IP addresses set to lookup bulk geolocations. | String[] |
-| SetLang(String lang) | Sets the language parameter to query time zone information. Default is 'en'. | void |
-| GetLang() | Returns the language value used to query time zone information. | String|
+| SetIPAddress(String ipAddress)                               | Sets IP address to lookup geolocation.                                          | void     |
+| GetIPAddress()                                               | Get IP address set to lookup geolocation.                                       | String   |
+| SetIPAddresses(String[] ipAddresses) | Set IP addresses to lookup multiple geo-locations. Throws IllegalArgumentException if no. of IP addresses are more than 50. **Note:** Multiple IP addresses lookup is only available for paid users.                                                                         | void     |
+| GetIPAddresses()                                             | Get IP addresses set to lookup bulk geolocations.                               | String[] |
+| SetLang(String lang)                                         | Set language parameter to lookup geolocation.                                   | void     |
+| GetLang()                                                    | Get language set to lookup geolocation.                                         | String   |
+| SetFields(String fields)                                     | Set fields to lookup geolocation.                                               | void     |
+| GetFields()                                                  | Get fields set to lookup geolocation.                                           | String   |
+| SetIncludeHostname(Boolean includeHostname)                  | Set includeHostname to true to get hostname as well.                            | void     |
+| IsIncludeHostname()                                          | Returns Boolean object whether hostname is included in response or not.         | Boolean  |
+| SetIncludeSecurity(Boolean includeSecurity)                  | Set includeSecurity to true to get Security object as well.                     | void     |
+| IsIncludeSecurity()                                          | Returns Boolean object whether Security object is included in response or not.  | Boolean  |
+| SetIncludeUserAgentDetail(Boolean includeUserAgentDetail)    | Set includeUserAgentDetail to true to get UserAgent object as well.             | void     |
+| IsIncludeUserAgentDetail()                                   | Returns Boolean object whether UserAgent object is included in response or not. | Boolean  |
+| SetExcludes(String excludes)                                 | Set fields (as a comma separated value) to exclude from response.               | void     |
+| GetExcludes()                                                | Get fields (as a comma separated value) that have been excluded from response.  | String   |
 
 ### Class: IPGeolocation.Geolocation
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetStatus() | Returns HTTP status of the geolocation query. 200 is the successful query status. | Integer |
-| GetMessage() | Returns error message, if the query was not successful. | String |
-| GetIPAddress() | Returns IP address of the geolocation. | String |
-| GetContinentCode() | Returns 2-letters continent code. | String |
-| GetContinentName() | Returns continent name. | String |
-| GetCountryCode2() | Returns 2-letters country code. | String |
-| GetCountryCode3() | Returns 3-letters country code. | String |
-| GetCountryName() | Returns country name. | String |
-| GetCountryCapital() | Returns country capital. | String |
-| GetStateProvince() | Returns state/province. | String |
-| GetDistrict() | Returns district. | String |
-| GetCity() | Returns city. | String |
-| GetZipCode() | Returns zip code. | String |
-| GetLatitude() | Returns latitude of the city. | Double |
-| GetLongitude() | Returns longitude of the city. | Double |
-| isEU() | Returns is the country in European Union. | Boolean |
-| GetCallingCode() | Returns country calling code. | String |
-| GetCountryTLD() | Returns country’s top level domain like '.au' for Australia. | String |
-| GetLanguages() | Returns languages spoken in the country. | String |
-| GetCountryFlag() | Returns a URL to country’s flag. | String |
-| GetISP() | Returns ISP name. | String |
-| GetConnectionType() | Returns connection type of the IP address. | String |
-| GetOrganization() | Returns organization using the IP address. | String |
-| GetGeonameID() | Returns geoname ID from geonames.org database. | String |
-| GetASN() | Returns AS number of the IP address. | String |
-| GetCurrency() | Returns currency information of the country. | GeolocationCurrency |
-| GetTimezone() | Returns time zone information of the country. | GeolocationTimezone |
+| GetStatus()              | Returns HTTP status of the geolocation query. 200 is the successful query status. | Integer             |
+| GetMessage()             | Returns error message, if the query was not successful.                           | String              |
+| GetDomain()              | Returns the domain name when domain is searched.                                  | String              |
+| GetHostname()            | Returns hostname of the ip address.                                               | String              |
+| GetIPAddress()           | Returns IP address of the geolocation.                                            | String              |
+| GetContinentCode()       | Returns 2-letters continent code.                                                 | String              |
+| GetContinentName()       | Returns continent name.                                                           | String              |
+| GetCountryCode2()        | Returns 2-letters country code.                                                   | String              |
+| GetCountryCode3()        | Returns 3-letters country code.                                                   | String              |
+| GetCountryName()         | Returns country name.                                                             | String              |
+| GetCountryCapital()      | Returns country capital.                                                          | String              |
+| GetStateProvince()       | Returns state/province.                                                           | String              |
+| GetDistrict()            | Returns district.                                                                 | String              |
+| GetCity()                | Returns city.                                                                     | String              |
+| GetZipCode()             | Returns zip code.                                                                 | String              |
+| GetLatitude()            | Returns latitude of the city.                                                     | Double              |
+| GetLongitude()           | Returns longitude of the city.                                                    | Double              |
+| IsEU()                   | Returns is the country in European Union.                                         | Boolean             |
+| GetCallingCode()         | Returns country calling code.                                                     | String              |
+| GetCountryTLD()          | Returns country's top level domain like '.au' for Australia.                      | String              |
+| GetLanguages()           | Returns languages spoken in the country.                                          | String              |
+| GetCountryFlag()         | Returns a URL to country's flag.                                                  | String              |
+| GetISP()                 | Returns ISP name.                                                                 | String              |
+| GetConnectionType()      | Returns connection type of the IP address.                                        | String              |
+| GetOrganization()        | Returns organization of the IP address.                                           | String              |
+| GetAsn()                 | Returns AS number of the IP address.                                              | String              |
+| GetGeonameID()           | Returns geoname ID from geonames.org database.                                    | String              |
+| GetCurrency()            | Returns currency information of the country.                                      | GeolocationCurrency |
+| GetTimezone()            | Returns time zone information of the country.                                     | GeolocationTimezone |
+| GetGeolocationSecurity() | Returns security details of the ip address.                                       | GeolocationSecurity |
+| GetUserAgent()           | Returns user agent object to get user agent details.                              | UserAgent           |
 
 ### Class: IPGeolocation.GeolocationCurrency
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetCode() | Returns 3-letters currency code. | String |
-| GetName() | Returns currency name. | String |
+| GetCode()   | Returns 3-letters currency code. | String |
+| GetName()   | Returns currency name.           | String |
+| GetSymbol() | Returns currency symbol.         | String |
+
+
+### Class: io.ipgeolocation.api.GeolocationSecurity
+
+| Method | Description | Return Type |
+| ------ | ----------- | ----------- |
+| GetThreatScore()  | Returns threat score for the ip address                          | Integer  |
+| IsTor()           | Returns Boolean object whether the ip is using tor or not.       | Boolean  |
+| IsProxy()         | Returns Boolean object whether the ip is using proxy or not.     | Boolean  |
+| GetProxyType()    | Returns the type of proxy used by ip address                     | String   |
+| IsAnonymous()     | Returns Boolean object whether the ip is anonymous or not.       | Boolean  |
+| IsKnownAttacker() | Returns Boolean object whether the ip is known attacker or not.  | Boolean  |
+| IsBot()           | Returns Boolean object whether the ip is bot or not.             | Boolean  |
+| IsSpam()          | Returns Boolean object whether the ip is spam or not.            | Boolean  |
+| IsCloudProvider() | Returns Boolean object whether the ip is cloud provider or not.  | Boolean  |
 
 ### Class: IPGeolocation.GeolocationTimezone
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetName() | Returns standard time zone ID like “America/New_York”. | String |
-| GetOffset() | Returns time zone offset from UTC. | Double |
-| GetCurrentTime() | Returns current date-time string in the format “yyyy-MM-dd HH:mm:ss.SSSZ”. | String |
-| isDST() | Returns is the country observing daylight saving time. | Boolean |
-| GetDSTSavings() | Returns daylight savings time (in hours). | Double |
+| GetName()            | Returns standard time zone ID like "America/New_York".                    | String  |
+| GetOffset()          | Returns time zone offset from UTC.                                        | Double  |
+| GetCurrentTime()     | Returns current date-time string in the format "yyyy-MM-dd HH:mm:ss.SSSZ" | String  |
+| GetCurrentTimeUnix() | Returns current date-time as a unix time                                  | Double  |
+| IsDST()              | Returns is the country observing daylight saving time.                    | Boolean |
+| GetDSTSavings()      | Returns daylight savings time (in hours).                                 | Double  |
 
 ### Class: IPGeolocation.TimezoneParams
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| SetTimezone(String timezone) | Sets time zone ID to query time zone information. | void |
-| GetTimezone() | Get time zone ID set to query time zone information. | String |
-| SetIPAddress(String ip) | Sets IP address to query time zone information. | void |
-| GetIPAddress() | Get IP address set to query time zone information. | String |
-| SetLocation(Double latitude, Double longitude) | Sets latitude and longitude of a location to query time zone information. | void |
-| GetLatitude() | Returns latitude set to query time zone information. | Double |
-| GetLongitude() | Returns longitude set to query time zone information. | Double |
-| SetLang(String lang) | Sets the language parameter to query time zone information. Default is 'en'. | void |
-| GetLang() | Returns the language value used to query time zone information. | String|
+| SetTimezone(String timezone)                      | Sets time zone ID to query time zone information.                         | void   |
+| GetTimezone()                                     | Get time zone ID set to query time zone information.                      | String |
+| SetIPAddress(String ip)                           | Sets IP address to query time zone information.                           | void   |
+| GetIPAddress()                                    | Get IP address set to query time zone information.                        | String |
+| SetCoordinates(Double latitude, Double longitude) | Sets latitude and longitude of a location to query time zone information. | void   |
+| GetLatitude()                                     | Returns latitude set to query time zone information.                      | Double |
+| GetLongitude()                                    | Returns longitude set to query time zone information.                     | Double |
+| SetLocation(String location)                      | Set location parameter to get timezone details.                           | void   |
+| GetLocation()                                     | Get location parameter value to get timezone details.                     | String |
+| SetLang(String lang)                              | Set language parameter to lookup geolocation. Default is 'en'.            | void   |
+| GetLang()                                         | Get language set to lookup geolocation.                                   | String |
 
 ### Class: IPGeolocation.Timezone
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetStatus() | Returns HTTP status of the geolocation query. 200 is the successful query status. | Integer |
-| GetMessage() | Returns error message, if the query was not successful. | String |
-| GetTimezone() | Returns time zone ID like “America/New_York”. | String |
-| GetTimezoneOffset() | Returns time zone offset from UTC. | Double |
-| GetDate() | Returns current date in the format “yyyy-MM-dd”. | String |
-| GetDateTime() | Returns date-time string in the format “yyyy-MM-dd HH:mm:ss”. | String |
-| GetDateTimeTxt() | Returns date-time string in the format “EEEE, MMMM dd, yyyy HH:mm:ss”. | String |
-| GetDateTimeWti() | Returns date-time string in the format “EEE, dd MMM yyyy HH:mm:ss Z”. | String |
-| GetDateTimeYmd() | Returns date-time string in the format “yyyy-MM-dd'T'HH:mm:ssZ”. | String |
-| GetDateTimeUnix() | Returns date-time string as a unix value in seconds. | Double |
-| GetTime24() | Returns current time in the format “HH:mm:ss”. | String |
-| GetTime12() | Returns current time in the format “hh:mm:ss aa”. | String |
-| GetWeek() | Returns current week of the year. | String |
-| GetMonth() | Returns current month of the year. | String |
-| GetYear() | Returns current year. | String |
-| GetYearAbbr() | Returns 2-letters year abbreviation like “18”. | String |
-| isDST() | Returns is the country observing Daylight Saving time. | Boolean |
-| GetDSTSavings() | Returns daylight savings time (in hours). | Double |
-| GetTimezoneGeo() | Returns geolocation of timezone if you lookup timezone information from an IP address. | TimezoneGeo |
+| GetStatus()                | Returns HTTP status of the geolocation query. 200 is the successful query status.      | Integer     |
+| GetMessage()               | Returns error message, if the query was not successful.                                | String      |
+| GetTimezone()              | Returns time zone ID like "America/New_York".                                          | String      |
+| GetTimezoneOffset()        | Returns time zone offset from UTC.                                                     | Double      |
+| GetTimezoneOffsetWithDST() | Returns time zone offset with dst value from UTC.                                      | Double      |
+| GetDate()                  | Returns current date in the format "yyyy-MM-dd".                                       | String      |
+| GetDateTime()              | Returns date-time string in the format "yyyy-MM-dd HH:mm:ss".                          | String      |
+| GetDateTimeTxt()           | Returns date-time string in the format "EEEE, MMMM dd, yyyy HH:mm:ss".                 | String      |
+| GetDateTimeWti()           | Returns date-time string in the format "EEE, dd MMM yyyy HH:mm:ss Z".                  | String      |
+| GetDateTimeYmd()           | Returns date-time string in the format "yyyy-MM-dd'T'HH:mm:ssZ".                       | String      |
+| GetDateTimeUnix()          | Returns current date-time as unix time.                                                | Integer     |
+| GetTime24()                | Returns current time in the format "HH:mm:ss".                                         | String      |
+| GetTime12()                | Returns current time in the format "hh:mm:ss aa".                                      | String      |
+| GetWeek()                  | Returns current week of the year.                                                      | Integer     |
+| GetMonth()                 | Returns current month of the year.                                                     | Integer     |
+| GetYear()                  | Returns current year.                                                                  | Integer     |
+| GetYearAbbr()              | Returns 2-letters year abbreviation like "18".                                         | String      |
+| IsDST()                    | Returns is the country observing Daylight Saving time.                                 | Boolean     |
+| GetDSTSavings()            | Returns daylight savings time (in hours).                                              | Double      |
+| GetTimezoneGeo()           | Returns geolocation of timezone if you lookup timezone information from an IP address. | TimezoneGeo |
 
 ### Class: IPGeolocation.TimezoneGeo
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetCountryCode2() | Returns 2-letters country code. | String |
-| GetCountryCode3() | Returns 3-letters country code. | String |
-| GetCountryName() | Returns country name. | String |
-| GetStateProvince() | Returns state/province. | String |
-| GetDistrict() | Returns district. | String |
-| GetCity() | Returns city. | String |
-| GetZipCode() | Returns zip code. | String |
-| GetLatitude() | Returns latitude of the city. | Double |
-| GetLongitude() | Returns longitude of the city. | Double |
+| GetCountryCode2()  | Returns 2-letters country code. | String |
+| GetCountryCode3()  | Returns 3-letters country code. | String |
+| GetCountryName()   | Returns country name.           | String |
+| GetStateProvince() | Returns state/province.         | String |
+| GetDistrict()      | Returns district.               | String |
+| GetCity()          | Returns city.                   | String |
+| GetZipCode()       | Returns zip code.               | String |
+| GetLatitude()      | Returns latitude of the city.   | Double |
+| GetLongitude()     | Returns longitude of the city.  | Double |
+
+### Class: IPGeolocation.UserAgent
+
+| Method | Description | Return Type |
+| ------ | ----------- | ----------- |
+| GetUserAgentString() | Returns user-agent string.                     | String                   |
+| GetName()            | Returns name of the user agent.                | String                   |
+| GetType()            | Returns type of the user agent.                | String                   |
+| GetVersion()         | Returns version of the user agent.             | String                   |
+| GetVersionMajor()    | Returns version major of the user agent.       | String                   |
+| GetDevice()          | Returns user-agent's device details.           | UserAgentDevice          |
+| GetEngine()          | Returns user-agent's engine details.           | UserAgentEngine          |
+| GetOperatingSystem() | Returns user-agent's operating system details. | UserAgentOperatingSystem |
+
+### Class: IPGeolocation.UserAgentDevice
+
+| Method | Description | Return Type |
+| ------ | ----------- | ----------- |
+| GetName()  | Returns user-agent's device name. | String |
+| GetType()  | Returns user-agent's type name.   | String |
+| GetBrand() | Returns user-agent's brand name.  | String |
+| GetCpu()   | Returns user-agent's CPU name.    | String |
+
+### Class: IPGeolocation.UserAgentEngine
+
+| Method | Description | Return Type |
+| ------ | ----------- | ----------- |
+| GetName()         | Returns user-agent's engine name.          | String |
+| GetType()         | Returns user-agent's engine type.          | String |
+| GetVersion()      | Returns user-agent's engine version.       | String |
+| GetVersionMajor() | Returns user-agent's engine version major. | String |
+
+### Class: IPGeolocation.UserAgentOperatingSystem
+
+| Method | Description | Return Type |
+| ------ | ----------- | ----------- |
+| GetName()         | Returns user-agent's operating system name.           | String |
+| GetType()         | Returns user-agent's operating system type.           | String |
+| GetVersion()      | Returns user-agent's operating system version.        | String |
+| GetVersionMajor() | Returns user-agent's operating system version major.  | String |
+

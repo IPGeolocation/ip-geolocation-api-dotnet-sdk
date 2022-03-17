@@ -16,6 +16,6 @@
    </dependencies>
    </metadata>
    <files>
-    <file src="bin/Debug/netcoreapp2.1/ipgeolocation.dll" target="lib/netcoreapp2.1" />
+    <file src="bin/Debug/netcoreapp6.0.3/ipgeolocation.dll" target="lib/netcoreapp6.0.0" />
    </files>
 </package>

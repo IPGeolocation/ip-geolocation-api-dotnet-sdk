@@ -4,10 +4,12 @@ using Newtonsoft.Json.Linq;
 namespace IPGeolocation
 {
     public class Geolocation
-	{
+    {
         private int status;
         private String message;
+        private String domain;
         private String ipAddress;
+        private String hostname;
         private String continentCode;
         private String continentName;
         private String countryCode2;
@@ -20,7 +22,7 @@ namespace IPGeolocation
         private String zipCode;
         private String latitude;
         private String longitude;
-        private Boolean isEU; 
+        private Boolean isEU;
         private String callingCode;
         private String countryTLD;
         private String languages;
@@ -28,10 +30,12 @@ namespace IPGeolocation
         private String isp;
         private String connectionType;
         private String organization;
-        private String geonameID;
         private String asn;
+        private String geonameID;
         private GeolocationCurrency currency;
         private GeolocationTimezone timezone;
+        private GeolocationSecurity security;
+        private UserAgent userAgentDetail;
 
         public Geolocation(JObject json)
         {
@@ -39,15 +43,20 @@ namespace IPGeolocation
 
             JToken token = json.GetValue("message");
             String message = token != null ? token.ToObject<String>() : null;
-
             if (this.status != 200 || message != null)
             {
                 this.message = message;
             }
             else
             {
+                token = json.GetValue("domain");
+                this.domain = token != null ? token.ToObject<String>() : null;
+
                 token = json.GetValue("ip");
                 this.ipAddress = token != null ? token.ToObject<String>() : null;
+
+                token = json.GetValue("hostname");
+                this.hostname = token != null ? token.ToObject<String>() : null;
 
                 token = json.GetValue("continent_code");
                 this.continentCode = token != null ? token.ToObject<String>() : null;
@@ -114,14 +123,50 @@ namespace IPGeolocation
 
                 token = json.GetValue("asn");
                 this.asn = token != null ? token.ToObject<String>() : null;
- 
+
                 token = json.GetValue("currency");
                 JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
-                this.currency = new GeolocationCurrency(currencyJson);
+                if (currencyJson == null)
+                {
+                    this.currency = new GeolocationCurrency();
+                }
+                else
+                {
+                    this.currency = new GeolocationCurrency(currencyJson);
+                }
 
                 token = json.GetValue("time_zone");
                 JObject timezoneJson = token != null ? token.ToObject<JObject>() : null;
-                this.timezone = new GeolocationTimezone(timezoneJson);
+                if (timezoneJson == null)
+                {
+                    this.timezone = new GeolocationTimezone();
+                }
+                else
+                {
+                    this.timezone = new GeolocationTimezone(timezoneJson);
+                }
+
+                token = json.GetValue("security");
+                JObject securityJson = token != null ? token.ToObject<JObject>() : null;
+                if (securityJson == null)
+                {
+                    this.security = new GeolocationSecurity();
+                }
+                else
+                {
+                    this.security = new GeolocationSecurity(securityJson);
+                }
+                
+                token = json.GetValue("user_agent");
+                JObject userAgentJson = token != null ? token.ToObject<JObject>() : null;
+                if (userAgentJson == null)
+                {
+                    this.userAgentDetail = new UserAgent();
+                }
+                else
+                {
+                    this.userAgentDetail = new UserAgent(userAgentJson);
+                }
             }
         }
 
@@ -135,9 +180,17 @@ namespace IPGeolocation
             return message;
         }
 
+        public String GetDomain()
+        {
+            return domain;
+        }
         public String GetIPAddress()
         {
             return ipAddress;
+        }
+        public String GetHostname()
+        {
+            return hostname;
         }
 
         public String GetContinentCode()
@@ -198,8 +251,8 @@ namespace IPGeolocation
         {
             return longitude;
         }
-	    
-	    public Boolean GetIsEU()
+
+        public Boolean IsEU()
         {
             return isEU;
         }
@@ -252,10 +305,20 @@ namespace IPGeolocation
         {
             return asn;
         }
-        
+
         public GeolocationCurrency GetCurrency()
         {
             return currency;
+        }
+
+        public GeolocationSecurity GetSecurity()
+        {
+            return security;
+        }
+
+        public UserAgent GetUserAgent()
+        {
+            return userAgentDetail;
         }
     }
 }
