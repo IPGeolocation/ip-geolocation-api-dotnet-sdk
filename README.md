@@ -227,7 +227,7 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetApiKey()                                             | This function to get the API key that you set to query the IPGeolocation API.                | String            |
 | GetGeolocation()                                        | This function to query Geolocation API.                                                      | Geolocation       |
 | GetGeolocation(GeolocationParams geolocationParams)     | This function to query Geolocation API based on the parameters passed.                       | Geolocation       |
-| GetBulkGeolocation(GeolocationParams geolocationParams) | This function to query Geolocation API to lookup multiple IP addresses (max. 50).            | List<Geolocation> |
+| GetBulkGeolocation(GeolocationParams geolocationParams) | This function to query Geolocation API to lookup multiple IP addresses (max. 50).            | List\<Geolocation\> |
 | GetTimezone()                                           | This function to query Timezone API based on calling machine's IP address.                   | Timezone          |
 | GetTimezone(TimezoneParams timezoneParams)              | This function to query Timezone API based on the parameters passed.                          | Timezone          |
 | GetUserAgent(String uaString)                           | This function to query UserAgent API.                                                        | UserAgent         |
