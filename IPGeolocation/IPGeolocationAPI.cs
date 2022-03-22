@@ -17,8 +17,7 @@ namespace IPGeolocation
 
         static public void Main(String[] args)
         {
-
-            Console.WriteLine("Main Method");
+            // Console.WriteLine("Main Method");
         }
         public String GetApiKey()
         {
