@@ -8,9 +8,18 @@ using Newtonsoft.Json;
 
 namespace IPGeolocation
 {
+
+
     public class IPGeolocationAPI
     {
         private String apiKey;
+
+
+        static public void Main(String[] args)
+        {
+
+            Console.WriteLine("Main Method");
+        }
         public String GetApiKey()
         {
             return this.apiKey;
@@ -30,14 +39,13 @@ namespace IPGeolocation
 
         public Geolocation GetGeolocation()
         {
-            JObject apiResponse = GetGeolocationResponse(null);
+            JObject apiResponse = GetApiResponse("ipgeo", "apiKey=" + apiKey);
             return new Geolocation(apiResponse);
         }
 
         public Geolocation GetGeolocation(GeolocationParams geolocationParams)
         {
             JObject apiResponse = GetGeolocationResponse(geolocationParams);
-            Console.WriteLine(apiResponse);
             return new Geolocation(apiResponse);
         }
 
@@ -64,21 +72,28 @@ namespace IPGeolocation
                     urlParams.Append("&fields=");
                     urlParams.Append(geolocationParams.GetFields());
                 }
-                if (geolocationParams.IsIncludeHostname()) {
+                if (geolocationParams.IsIncludeHostname())
+                {
                     urlParams.Append("&include=hostname");
                 }
-                if (geolocationParams.IsIncludeSecurity()) {
-                    if (geolocationParams.IsIncludeHostname()) {
+                if (geolocationParams.IsIncludeSecurity())
+                {
+                    if (geolocationParams.IsIncludeHostname())
+                    {
                         urlParams.Append(",security");
-                    } else
+                    }
+                    else
                     {
                         urlParams.Append("&include=security");
                     }
                 }
-                if (geolocationParams.IsIncludeUserAgentDetail()) {
-                    if (geolocationParams.IsIncludeHostname() || geolocationParams.IsIncludeSecurity()) {
+                if (geolocationParams.IsIncludeUserAgentDetail())
+                {
+                    if (geolocationParams.IsIncludeHostname() || geolocationParams.IsIncludeSecurity())
+                    {
                         urlParams.Append(",useragent");
-                    } else
+                    }
+                    else
                     {
                         urlParams.Append("&include=useragent");
                     }
@@ -97,30 +112,14 @@ namespace IPGeolocation
             return urlParams.ToString();
         }
 
-        private JObject GetApiResponse(String api, String urlParams)
-        {
-            String url = "https://api.ipgeolocation.io/" + api + "?" + urlParams;
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
-            webrequest.Method = "GET";
-            webrequest.ContentType = "application/json";
-            HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
-            Encoding enc = System.Text.Encoding.GetEncoding("utf-8");
-            StreamReader responseStream = new StreamReader(webresponse.GetResponseStream(), enc);
-            String result = String.Empty;
-            result = responseStream.ReadToEnd();
-            JObject response = JObject.Parse(result);
-            response.Add("status", (int)webresponse.StatusCode);
-            webresponse.Close();
-            return response;
-        }
-
         public List<Geolocation> GetBulkGeolocation(GeolocationParams geolocationParams)
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("ips", geolocationParams.GetIPAddresses());
             String jsonStr = JsonConvert.SerializeObject(json);
             String urlParams = BuildGeolocationUrlParams(geolocationParams);
-            List<JObject> apiResponse = GetBulkApiResponse(jsonStr, urlParams);
+            String url = "https://api.ipgeolocation.io/ipgeo-bulk" + "?" + urlParams;
+            List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
             List<Geolocation> geolocations = new List<Geolocation>();
             foreach (JObject response in apiResponse)
             {
@@ -129,48 +128,22 @@ namespace IPGeolocation
             return geolocations;
         }
 
-        private List<JObject> GetBulkApiResponse(String ipsJson, String urlParams)
-        {
-            var responseString = "";
-            int responseStatusCode = 0;
-            try
-            {
-                String url = "https://api.ipgeolocation.io/ipgeo-bulk" + "?" + urlParams;
-                var request = HttpWebRequest.Create(url);
-                var data = Encoding.ASCII.GetBytes(ipsJson);
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.ContentLength = data.Length;
-                using (var stream = request.GetRequestStream())
-                {
-                    stream.Write(data, 0, data.Length);
-                }
-                var response = (HttpWebResponse)request.GetResponse();
-                responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                responseStatusCode = (int)response.StatusCode;
-            }
-            catch (WebException ex)
-            {
-                using (var stream = ex.Response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    responseString = reader.ReadToEnd().ToString();
-                }
-            }
-            return ConvertStringToListMap(responseStatusCode, responseString);
-        }
-
         public Timezone GetTimezone()
         {
-            JObject apiResponse = GetTimezoneResponse(null);
+            JObject apiResponse = GetApiResponse("timezone", "apiKey=" + apiKey);
             return new Timezone(apiResponse);
         }
 
         public Timezone GetTimezone(TimezoneParams timezoneParams)
         {
             JObject apiResponse = GetTimezoneResponse(timezoneParams);
-            Console.WriteLine(apiResponse);
             return new Timezone(apiResponse);
+        }
+
+        private JObject GetTimezoneResponse(TimezoneParams timezoneParams)
+        {
+            String urlParams = BuildTimezoneUrlParams(timezoneParams);
+            return GetApiResponse("timezone", urlParams);
         }
 
         private String BuildTimezoneUrlParams(TimezoneParams timezoneParams)
@@ -213,35 +186,6 @@ namespace IPGeolocation
             return urlParams.ToString();
         }
 
-        private JObject GetTimezoneResponse(TimezoneParams timezoneParams)
-        {
-            String urlParams = BuildTimezoneUrlParams(timezoneParams);
-            return GetApiResponse("timezone", urlParams);
-        }
-
-        private List<JObject> ConvertStringToListMap(int responseCode, String response)
-        {
-            List<JObject> finalResult = new List<JObject>();
-            List<JObject> list;
-            if (responseCode != 200)
-            {
-                response = "[" + response + "]";
-                Console.WriteLine("Passing: " + response);
-                list = JsonConvert.DeserializeObject<List<JObject>>(response);
-            }
-            else
-            {
-                Console.WriteLine("Passing: " + response);
-                list = JsonConvert.DeserializeObject<List<JObject>>(response);
-            }
-            foreach (JObject map in list)
-            {
-                map.Add("status", responseCode);
-                finalResult.Add(map);
-            }
-            return finalResult;
-        }
-
         public UserAgent GetUserAgent(String uaString)
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
@@ -258,7 +202,7 @@ namespace IPGeolocation
             json.Add("uaStrings", uaStrings);
             String jsonStr = JsonConvert.SerializeObject(json);
             String url = "https://api.ipgeolocation.io/user-agent-bulk?apiKey=" + apiKey;
-            List<JObject> apiResponse = GetBulkUserAgentApiResponse(jsonStr, url);
+            List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
             List<UserAgent> userAgents = new List<UserAgent>();
             foreach (JObject response in apiResponse)
             {
@@ -299,7 +243,6 @@ namespace IPGeolocation
 
         private JObject ConvertStringToListMapUserAgent(int responseCode, String response)
         {
-            List<JObject> finalResult = new List<JObject>();
             JObject jsonObject;
             if (responseCode != 200)
             {
@@ -309,18 +252,34 @@ namespace IPGeolocation
             {
                 jsonObject = JsonConvert.DeserializeObject<JObject>(response);
             }
-            Console.WriteLine("Passing: " + jsonObject);
             return jsonObject;
         }
 
-        private List<JObject> GetBulkUserAgentApiResponse(String jsonString, String url)
+        private JObject GetApiResponse(String api, String urlParams)
+        {
+            String url = "https://api.ipgeolocation.io/" + api + "?" + urlParams;
+            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
+            webrequest.Method = "GET";
+            webrequest.ContentType = "application/json";
+            HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
+            Encoding enc = System.Text.Encoding.GetEncoding("utf-8");
+            StreamReader responseStream = new StreamReader(webresponse.GetResponseStream(), enc);
+            String result = String.Empty;
+            result = responseStream.ReadToEnd();
+            JObject response = JObject.Parse(result);
+            response.Add("status", (int)webresponse.StatusCode);
+            webresponse.Close();
+            return response;
+        }
+
+        private List<JObject> GetBulkApiResponse(String ipsJson, String url)
         {
             var responseString = "";
             int responseStatusCode = 0;
             try
             {
                 var request = HttpWebRequest.Create(url);
-                var data = Encoding.ASCII.GetBytes(jsonString);
+                var data = Encoding.ASCII.GetBytes(ipsJson);
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
@@ -340,14 +299,13 @@ namespace IPGeolocation
                     responseString = reader.ReadToEnd().ToString();
                 }
             }
-            return ConvertStringToListMapBulkUserAgent(responseStatusCode, responseString);
+            return ConvertStringToListMap(responseStatusCode, responseString);
         }
 
-        private List<JObject> ConvertStringToListMapBulkUserAgent(int responseCode, String response)
+        private List<JObject> ConvertStringToListMap(int responseCode, String response)
         {
             List<JObject> finalResult = new List<JObject>();
             List<JObject> list;
-
             if (responseCode != 200)
             {
                 response = "[" + response + "]";
