@@ -8,6 +8,8 @@ namespace IPGeolocation
         private String lang;
         private String fields;
         private Boolean includeHostname;
+        private Boolean includeHostnameFallbackLive;
+        private Boolean includeLiveHostname;
         private Boolean includeSecurity;
         private Boolean includeUserAgentDetail;
 
@@ -20,6 +22,9 @@ namespace IPGeolocation
             this.lang = "en";
             this.fields = "";
             this.excludes = "";
+            this.includeHostname = false;
+            this.includeHostnameFallbackLive = false;
+            this.includeLiveHostname = false;
         }
 
         public void SetIPAddress(String ipAddress)
@@ -77,6 +82,26 @@ namespace IPGeolocation
         public Boolean IsIncludeHostname()
         {
             return includeHostname;
+        }
+
+        public void SetIncludeHostnameFallbackLive(Boolean includeHostnameFallbackLive)
+        {
+            this.includeHostnameFallbackLive = includeHostnameFallbackLive;
+        }
+
+        public Boolean IsIncludeHostnameFallbackLive()
+        {
+            return includeHostnameFallbackLive;
+        }
+
+        public void SetIncludeLiveHostname(Boolean includeLiveHostname)
+        {
+            this.includeLiveHostname = includeLiveHostname;
+        }
+
+        public Boolean IsIncludeLiveHostname()
+        {
+            return includeLiveHostname;
         }
 
         public void SetIncludeSecurity(Boolean includeSecurity)

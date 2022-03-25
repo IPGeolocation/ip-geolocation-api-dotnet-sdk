@@ -40,6 +40,10 @@ $ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.9
 $ paket add IpGeoLocation.IpGeoLocation --version 1.0.9
 ```
 
+## Documentation
+Use the following URL to visit documentation
+[https://ipgeolocation.io/documentation.html](https://ipgeolocation.io/documentation.html)
+
 ## Basic Usage
 ### Setup API
 ```c#
@@ -245,8 +249,14 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetLang()                                                    | Get language set to lookup geolocation.                                         | String   |
 | SetFields(String fields)                                     | Set fields to lookup geolocation.                                               | void     |
 | GetFields()                                                  | Get fields set to lookup geolocation.                                           | String   |
-| SetIncludeHostname(Boolean includeHostname)                  | Set includeHostname to true to get hostname as well.                            | void     |
+| SetIncludeHostname(Boolean includeHostname)                  | This URL parameter enables the IPGeolocation API to lookup hostname from our IP-Hostname database and returns the same IP address if there is no hostname found for the queried IP address. Lookup thru IP-Hostname database is faster than other options but is experimental and under process and can produce unwanted output.                            | void     |
 | IsIncludeHostname()                                          | Returns Boolean object whether hostname is included in response or not.         | Boolean  |
+
+| SetIncludeHostname(Boolean includeHostnameFallbackLive)      | This URL parameter enables the IPGeolocation API to lookup hostname from our IP-Hostname database and if there is no hostname found for the queried IP address, then lookup thru the live sources. This option has been introduced for faster and accurate lookup.                            | void     |
+| IsIncludeHostnameFallbackLive()                              | Returns Boolean object whether hostname with fall-back-live is included in response or not.  | Boolean  |
+| SetIncludeLiveHostname(Boolean includeLiveHostname)          | This URL parameter enables the IPGeolocation API to lookup hostname from live sources. Lookup thru live sources is accurate but can introduce more latency to your query to IPGeolocation API.                            | void     |
+| IsIncludeLiveHostname()                                      | Returns Boolean object whether live hostname is included in response or not.    | Boolean  |
+
 | SetIncludeSecurity(Boolean includeSecurity)                  | Set includeSecurity to true to get Security object as well.                     | void     |
 | IsIncludeSecurity()                                          | Returns Boolean object whether Security object is included in response or not.  | Boolean  |
 | SetIncludeUserAgentDetail(Boolean includeUserAgentDetail)    | Set includeUserAgentDetail to true to get UserAgent object as well.             | void     |

@@ -9,16 +9,10 @@ using Newtonsoft.Json;
 namespace IPGeolocation
 {
 
-
     public class IPGeolocationAPI
     {
+
         private String apiKey;
-
-
-        static public void Main(String[] args)
-        {
-            // Console.WriteLine("Main Method");
-        }
         public String GetApiKey()
         {
             return this.apiKey;
@@ -71,13 +65,25 @@ namespace IPGeolocation
                     urlParams.Append("&fields=");
                     urlParams.Append(geolocationParams.GetFields());
                 }
+                bool includeHost = false;
                 if (geolocationParams.IsIncludeHostname())
                 {
                     urlParams.Append("&include=hostname");
+                    includeHost = true;
+                }
+                else if (geolocationParams.IsIncludeHostnameFallbackLive())
+                {
+                    urlParams.Append("&include=hostnameFallbackLive");
+                    includeHost = true;
+                }
+                else if (geolocationParams.IsIncludeLiveHostname())
+                {
+                    urlParams.Append("&include=liveHostname");
+                    includeHost = true;
                 }
                 if (geolocationParams.IsIncludeSecurity())
                 {
-                    if (geolocationParams.IsIncludeHostname())
+                    if (includeHost)
                     {
                         urlParams.Append(",security");
                     }
@@ -88,7 +94,7 @@ namespace IPGeolocation
                 }
                 if (geolocationParams.IsIncludeUserAgentDetail())
                 {
-                    if (geolocationParams.IsIncludeHostname() || geolocationParams.IsIncludeSecurity())
+                    if (includeHost || geolocationParams.IsIncludeSecurity())
                     {
                         urlParams.Append(",useragent");
                     }
