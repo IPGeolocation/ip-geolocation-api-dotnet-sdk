@@ -58,30 +58,37 @@ namespace IPGeolocation
             return proxyType;
         }
 
-        public Boolean IsTor(){
+        public Boolean IsTor()
+        {
             return isTor;
         }
-        public Boolean IsProxy(){
+        public Boolean IsProxy()
+        {
             return isProxy;
         }
 
-        public Boolean IsAnonymous(){
+        public Boolean IsAnonymous()
+        {
             return isAnonymous;
         }
 
-        public Boolean IsKnownAttacker(){
+        public Boolean IsKnownAttacker()
+        {
             return isKnownAttacker;
         }
 
-        public Boolean IsBot(){
+        public Boolean IsBot()
+        {
             return isBot;
         }
 
-        public Boolean IsSpam(){
+        public Boolean IsSpam()
+        {
             return isSpam;
         }
 
-        public Boolean IsCloudProvider(){
+        public Boolean IsCloudProvider()
+        {
             return isCloudProvider;
         }
 

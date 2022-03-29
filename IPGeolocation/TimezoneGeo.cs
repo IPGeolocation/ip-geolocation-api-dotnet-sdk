@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 namespace IPGeolocation
 {
     public class TimezoneGeo
-	{
+    {
         private String countryName;
         private String countryCode2;
         private String countryCode3;
@@ -14,7 +14,8 @@ namespace IPGeolocation
         private String latitude;
         private String longitude;
 
-        public TimezoneGeo(){
+        public TimezoneGeo()
+        {
         }
         public TimezoneGeo(JObject json)
         {

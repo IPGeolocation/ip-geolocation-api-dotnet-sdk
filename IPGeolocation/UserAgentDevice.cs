@@ -40,7 +40,7 @@ namespace IPGeolocation
             return brand;
         }
 
-       public String GetCPU()
+        public String GetCPU()
         {
             return cpu;
         }

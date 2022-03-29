@@ -54,7 +54,8 @@ namespace IPGeolocation
             return currentTimeUnix;
         }
 
-        public Boolean IsDST(){
+        public Boolean IsDST()
+        {
             return dst;
         }
 

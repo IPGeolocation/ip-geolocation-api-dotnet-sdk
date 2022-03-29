@@ -5,8 +5,8 @@ namespace IPGeolocation
 {
     public class Geolocation
     {
-        private int status;
-        private String message;
+        // private int status;
+        // private String message;
         private String domain;
         private String ipAddress;
         private String hostname;
@@ -39,145 +39,124 @@ namespace IPGeolocation
 
         public Geolocation(JObject json)
         {
-            this.status = json.GetValue("status").ToObject<int>();
+            JToken token = json.GetValue("domain");
+            this.domain = token != null ? token.ToObject<String>() : null;
 
-            JToken token = json.GetValue("message");
-            String message = token != null ? token.ToObject<String>() : null;
-            if (this.status != 200 || message != null)
+            token = json.GetValue("ip");
+            this.ipAddress = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("hostname");
+            this.hostname = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("continent_code");
+            this.continentCode = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("continent_name");
+            this.continentName = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_code2");
+            this.countryCode2 = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_code3");
+            this.countryCode3 = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_name");
+            this.countryName = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_capital");
+            this.countryCapital = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("state_prov");
+            this.stateProvince = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("district");
+            this.district = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("city");
+            this.city = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("zipcode");
+            this.zipCode = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("latitude");
+            this.latitude = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("longitude");
+            this.longitude = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("is_eu");
+            this.isEU = token != null ? token.ToObject<Boolean>() : false;
+
+            token = json.GetValue("calling_code");
+            this.callingCode = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_tld");
+            this.countryTLD = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("languages");
+            this.languages = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("country_flag");
+            this.countryFlag = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("isp");
+            this.isp = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("connection_type");
+            this.connectionType = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("organization");
+            this.organization = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("geoname_id");
+            this.geonameID = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("asn");
+            this.asn = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("currency");
+            JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
+            if (currencyJson == null)
             {
-                this.message = message;
+                this.currency = new GeolocationCurrency();
             }
             else
             {
-                token = json.GetValue("domain");
-                this.domain = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("ip");
-                this.ipAddress = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("hostname");
-                this.hostname = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("continent_code");
-                this.continentCode = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("continent_name");
-                this.continentName = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_code2");
-                this.countryCode2 = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_code3");
-                this.countryCode3 = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_name");
-                this.countryName = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_capital");
-                this.countryCapital = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("state_prov");
-                this.stateProvince = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("district");
-                this.district = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("city");
-                this.city = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("zipcode");
-                this.zipCode = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("latitude");
-                this.latitude = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("longitude");
-                this.longitude = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("is_eu");
-                this.isEU = token != null ? token.ToObject<Boolean>() : false;
-
-                token = json.GetValue("calling_code");
-                this.callingCode = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_tld");
-                this.countryTLD = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("languages");
-                this.languages = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("country_flag");
-                this.countryFlag = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("isp");
-                this.isp = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("connection_type");
-                this.connectionType = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("organization");
-                this.organization = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("geoname_id");
-                this.geonameID = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("asn");
-                this.asn = token != null ? token.ToObject<String>() : null;
-
-                token = json.GetValue("currency");
-                JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
-                if (currencyJson == null)
-                {
-                    this.currency = new GeolocationCurrency();
-                }
-                else
-                {
-                    this.currency = new GeolocationCurrency(currencyJson);
-                }
-
-                token = json.GetValue("time_zone");
-                JObject timezoneJson = token != null ? token.ToObject<JObject>() : null;
-                if (timezoneJson == null)
-                {
-                    this.timezone = new GeolocationTimezone();
-                }
-                else
-                {
-                    this.timezone = new GeolocationTimezone(timezoneJson);
-                }
-
-                token = json.GetValue("security");
-                JObject securityJson = token != null ? token.ToObject<JObject>() : null;
-                if (securityJson == null)
-                {
-                    this.security = new GeolocationSecurity();
-                }
-                else
-                {
-                    this.security = new GeolocationSecurity(securityJson);
-                }
-                
-                token = json.GetValue("user_agent");
-                JObject userAgentJson = token != null ? token.ToObject<JObject>() : null;
-                if (userAgentJson == null)
-                {
-                    this.userAgentDetail = new UserAgent();
-                }
-                else
-                {
-                    this.userAgentDetail = new UserAgent(userAgentJson);
-                }
+                this.currency = new GeolocationCurrency(currencyJson);
             }
-        }
 
-        public int GetStatus()
-        {
-            return status;
-        }
+            token = json.GetValue("time_zone");
+            JObject timezoneJson = token != null ? token.ToObject<JObject>() : null;
+            if (timezoneJson == null)
+            {
+                this.timezone = new GeolocationTimezone();
+            }
+            else
+            {
+                this.timezone = new GeolocationTimezone(timezoneJson);
+            }
 
-        public String GetMessage()
-        {
-            return message;
+            token = json.GetValue("security");
+            JObject securityJson = token != null ? token.ToObject<JObject>() : null;
+            if (securityJson == null)
+            {
+                this.security = new GeolocationSecurity();
+            }
+            else
+            {
+                this.security = new GeolocationSecurity(securityJson);
+            }
+
+            token = json.GetValue("user_agent");
+            JObject userAgentJson = token != null ? token.ToObject<JObject>() : null;
+            if (userAgentJson == null)
+            {
+                this.userAgentDetail = new UserAgent();
+            }
+            else
+            {
+                this.userAgentDetail = new UserAgent(userAgentJson);
+            }
         }
 
         public String GetDomain()

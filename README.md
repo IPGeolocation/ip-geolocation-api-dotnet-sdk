@@ -228,21 +228,23 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
 | IPGeolocationAPI(String apiKey)                         | Constructs the IPGeolocationAPI object and takes a valid apiKey as parameter. It throws ArgumentException for empty/null apiKey. ||
-| GetApiKey()                                             | This function to get the API key that you set to query the IPGeolocation API.                | String            |
-| GetGeolocation()                                        | This function to query Geolocation API.                                                      | Geolocation       |
-| GetGeolocation(GeolocationParams geolocationParams)     | This function to query Geolocation API based on the parameters passed.                       | Geolocation       |
-| GetBulkGeolocation(GeolocationParams geolocationParams) | This function to query Geolocation API to lookup multiple IP addresses (max. 50).            | List\<Geolocation\> |
-| GetTimezone()                                           | This function to query Timezone API based on calling machine's IP address.                   | Timezone          |
-| GetTimezone(TimezoneParams timezoneParams)              | This function to query Timezone API based on the parameters passed.                          | Timezone          |
-| GetUserAgent(String uaString)                           | This function to query UserAgent API.                                                        | UserAgent         |
-| GetBulkUserAgent(List<String> uaStrings)                | This function to query UserAgent API to lookup multiple user-agent strings (max. 50).        | List\<UserAgent\> |
+| GetApiKey()                                             | This function to get the API key that you set to query the IPGeolocation API.         | String                        |
+| GetGeolocation()                                        | This function to query Geolocation API.                                               | Dictionary\<String, Object\>  |
+| GetGeolocation(GeolocationParams geolocationParams)     | This function to query Geolocation API based on the parameters passed.                | Dictionary\<String, Object\>  |
+| GetBulkGeolocation(GeolocationParams geolocationParams) | This function to query Geolocation API to lookup multiple IP addresses (max. 50).     | Dictionary\<String, Object\>  |
+| GetTimezone()                                           | This function to query Timezone API based on calling machine's IP address.            | Dictionary\<String, Object\>  |
+| GetTimezone(TimezoneParams timezoneParams)              | This function to query Timezone API based on the parameters passed.                   | Dictionary\<String, Object\>  |
+| GetUserAgent(String uaString)                           | This function to query UserAgent API.                                                 | Dictionary\<String, Object\>  |
+| GetBulkUserAgent(List<String> uaStrings)                | This function to query UserAgent API to lookup multiple user-agent strings (max. 50). | Dictionary\<String, Object\>  |
 
 ### Class: IPGeolocation.GeolocationParams
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| SetIPAddress(String ipAddress)                               | Sets IP address to lookup geolocation.                                          | void     |
-| GetIPAddress()                                               | Get IP address set to lookup geolocation.                                       | String   |
+| SetIPAddress(String ipAddress)                               | Sets IP address to lookup geolocation.                       | void     |
+| GetDomain()                                                  | Get domain name when domain name is passed.                  | String   |
+| GetHostname()                                                | Get hostname for the IP address.                             | String   |
+| GetIPAddress()                                               | Get IP address set to lookup geolocation.                    | String   |
 | SetIPAddresses(String[] ipAddresses) | Set IP addresses to lookup multiple geo-locations. Throws IllegalArgumentException if no. of IP addresses are more than 50. **Note:** Multiple IP addresses lookup is only available for paid users.                                                                         | void     |
 | GetIPAddresses()                                             | Get IP addresses set to lookup bulk geolocations.                               | String[] |
 | SetLang(String lang)                                         | Set language parameter to lookup geolocation.                                   | void     |
@@ -251,12 +253,10 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 | GetFields()                                                  | Get fields set to lookup geolocation.                                           | String   |
 | SetIncludeHostname(Boolean includeHostname)                  | This URL parameter enables the IPGeolocation API to lookup hostname from our IP-Hostname database and returns the same IP address if there is no hostname found for the queried IP address. Lookup thru IP-Hostname database is faster than other options but is experimental and under process and can produce unwanted output.                            | void     |
 | IsIncludeHostname()                                          | Returns Boolean object whether hostname is included in response or not.         | Boolean  |
-
 | SetIncludeHostname(Boolean includeHostnameFallbackLive)      | This URL parameter enables the IPGeolocation API to lookup hostname from our IP-Hostname database and if there is no hostname found for the queried IP address, then lookup thru the live sources. This option has been introduced for faster and accurate lookup.                            | void     |
 | IsIncludeHostnameFallbackLive()                              | Returns Boolean object whether hostname with fall-back-live is included in response or not.  | Boolean  |
 | SetIncludeLiveHostname(Boolean includeLiveHostname)          | This URL parameter enables the IPGeolocation API to lookup hostname from live sources. Lookup thru live sources is accurate but can introduce more latency to your query to IPGeolocation API.                            | void     |
 | IsIncludeLiveHostname()                                      | Returns Boolean object whether live hostname is included in response or not.    | Boolean  |
-
 | SetIncludeSecurity(Boolean includeSecurity)                  | Set includeSecurity to true to get Security object as well.                     | void     |
 | IsIncludeSecurity()                                          | Returns Boolean object whether Security object is included in response or not.  | Boolean  |
 | SetIncludeUserAgentDetail(Boolean includeUserAgentDetail)    | Set includeUserAgentDetail to true to get UserAgent object as well.             | void     |
@@ -268,8 +268,6 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetStatus()              | Returns HTTP status of the geolocation query. 200 is the successful query status. | Integer             |
-| GetMessage()             | Returns error message, if the query was not successful.                           | String              |
 | GetDomain()              | Returns the domain name when domain is searched.                                  | String              |
 | GetHostname()            | Returns hostname of the ip address.                                               | String              |
 | GetIPAddress()           | Returns IP address of the geolocation.                                            | String              |
@@ -354,8 +352,6 @@ IP Geolocation API C# SDK has following classes that you can use to fully levera
 
 | Method | Description | Return Type |
 | ------ | ----------- | ----------- |
-| GetStatus()                | Returns HTTP status of the geolocation query. 200 is the successful query status.      | Integer     |
-| GetMessage()               | Returns error message, if the query was not successful.                                | String      |
 | GetTimezone()              | Returns time zone ID like "America/New_York".                                          | String      |
 | GetTimezoneOffset()        | Returns time zone offset from UTC.                                                     | Double      |
 | GetTimezoneOffsetWithDST() | Returns time zone offset with dst value from UTC.                                      | Double      |

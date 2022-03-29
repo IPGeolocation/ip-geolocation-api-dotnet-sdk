@@ -14,7 +14,8 @@ namespace IPGeolocation
         private UserAgentEngine engine;
         private UserAgentOperatingSystem operatingSystem;
 
-        public UserAgent(){
+        public UserAgent()
+        {
 
         }
         public UserAgent(JObject json)
@@ -72,15 +73,18 @@ namespace IPGeolocation
             return versionMajor;
         }
 
-        public UserAgentDevice GetUserAgentDevice(){
+        public UserAgentDevice GetUserAgentDevice()
+        {
             return device;
         }
 
-        public UserAgentEngine GetUserAgentEngine(){
+        public UserAgentEngine GetUserAgentEngine()
+        {
             return engine;
         }
 
-        public UserAgentOperatingSystem GetUserAgentOperatingSystem(){
+        public UserAgentOperatingSystem GetUserAgentOperatingSystem()
+        {
             return operatingSystem;
         }
 
