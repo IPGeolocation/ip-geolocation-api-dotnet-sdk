@@ -2,7 +2,7 @@
 namespace IPGeolocation
 {
     public class Strings
-	{
+    {
         public static String NullToEmpty(String s)
         {
             if (s == null)

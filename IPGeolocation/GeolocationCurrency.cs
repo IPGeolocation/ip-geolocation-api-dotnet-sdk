@@ -4,9 +4,14 @@ using Newtonsoft.Json.Linq;
 namespace IPGeolocation
 {
     public class GeolocationCurrency
-	{
+    {
         private String name;
         private String code;
+        private String symbol;
+
+        public GeolocationCurrency()
+        {
+        }
 
         public GeolocationCurrency(JObject json)
         {
@@ -15,6 +20,9 @@ namespace IPGeolocation
 
             token = json.GetValue("code");
             this.code = token != null ? token.ToObject<String>() : null;
+
+            token = json.GetValue("symbol");
+            this.symbol = token != null ? token.ToObject<String>() : null;
         }
 
         public String GetName()
@@ -26,5 +34,11 @@ namespace IPGeolocation
         {
             return code;
         }
+
+        public String GetSymbol()
+        {
+            return symbol;
+        }
+
     }
 }

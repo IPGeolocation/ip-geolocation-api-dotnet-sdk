@@ -1,11 +1,11 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v2.1",
-    "signature": "883f5ab0e357ef56d00e5851b3cee30b45ba651b"
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
   },
   "compilationOptions": {},
   "targets": {
-    ".NETCoreApp,Version=v2.1": {
+    ".NETCoreApp,Version=v6.0": {
       "IPGeolocation/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"

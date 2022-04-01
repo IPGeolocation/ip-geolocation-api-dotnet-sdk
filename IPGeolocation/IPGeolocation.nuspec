@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>IPGeolocation.IPGeolocation</id>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <title>IPGeoLocation API SDK</title>
     <authors>ipgeolocation.io</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -16,6 +16,6 @@
    </dependencies>
    </metadata>
    <files>
-    <file src="bin/Debug/netcoreapp2.1/ipgeolocation.dll" target="lib/netcoreapp2.1" />
+    <file src="bin/Debug/netcoreapp6.0.3/ipgeolocation.dll" target="lib/netcoreapp6.0.0" />
    </files>
 </package>
