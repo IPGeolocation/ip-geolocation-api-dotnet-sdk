@@ -1,6 +1,7 @@
 # Directories
 .vscode/
 IPGeolocation/obj/
+IPGeolocation/bin/
 .fake
 .ionide
 
