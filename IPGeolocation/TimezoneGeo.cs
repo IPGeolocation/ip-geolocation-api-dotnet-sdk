@@ -17,6 +17,7 @@ namespace IPGeolocation
         public TimezoneGeo()
         {
         }
+        
         public TimezoneGeo(JObject json)
         {
             JToken token = json.GetValue("country_name");

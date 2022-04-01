@@ -18,6 +18,7 @@ namespace IPGeolocation
         public GeolocationSecurity()
         {
         }
+
         public GeolocationSecurity(JObject json)
         {
             JToken token = json.GetValue("threat_score");
@@ -62,6 +63,7 @@ namespace IPGeolocation
         {
             return isTor;
         }
+
         public Boolean IsProxy()
         {
             return isProxy;
@@ -91,6 +93,5 @@ namespace IPGeolocation
         {
             return isCloudProvider;
         }
-
     }
 }

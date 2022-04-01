@@ -9,7 +9,10 @@ namespace IPGeolocation
         private String code;
         private String symbol;
 
-        public GeolocationCurrency() { }
+        public GeolocationCurrency()
+        {
+        }
+
         public GeolocationCurrency(JObject json)
         {
             JToken token = json.GetValue("name");

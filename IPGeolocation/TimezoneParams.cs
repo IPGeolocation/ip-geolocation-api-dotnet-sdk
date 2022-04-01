@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace IPGeolocation
 {
     public class TimezoneParams
@@ -9,6 +10,7 @@ namespace IPGeolocation
         private Double latitude;
         private Double longitude;
         private String location;
+
         public TimezoneParams()
         {
             ipAddress = "";

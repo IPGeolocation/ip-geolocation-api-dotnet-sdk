@@ -12,7 +12,10 @@ namespace IPGeolocation
         private Boolean dst;
         private Double dstSavings;
 
-        public GeolocationTimezone() { }
+        public GeolocationTimezone() 
+        {
+        }
+        
         public GeolocationTimezone(JObject json)
         {
             JToken token = json.GetValue("name");

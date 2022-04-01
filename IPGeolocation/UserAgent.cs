@@ -16,7 +16,6 @@ namespace IPGeolocation
 
         public UserAgent()
         {
-
         }
         
         public UserAgent(JObject json)
@@ -46,6 +45,7 @@ namespace IPGeolocation
 
             token = json.GetValue("operatingSystem");
             JObject operatingSystemJson = token != null ? token.ToObject<JObject>() : null;
+            
             this.operatingSystem = new UserAgentOperatingSystem(operatingSystemJson);
         }
 
