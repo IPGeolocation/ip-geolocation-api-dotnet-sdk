@@ -18,6 +18,7 @@ namespace IPGeolocation
         {
 
         }
+        
         public UserAgent(JObject json)
         {
             JToken token = json.GetValue("userAgentString");
@@ -87,6 +88,5 @@ namespace IPGeolocation
         {
             return operatingSystem;
         }
-
     }
 }
