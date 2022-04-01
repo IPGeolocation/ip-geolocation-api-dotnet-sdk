@@ -47,15 +47,12 @@ namespace IPGeolocation
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("ips", geolocationParams.GetIPAddresses());
+
             String jsonStr = JsonConvert.SerializeObject(json);
             String urlParams = BuildGeolocationUrlParams(geolocationParams);
             String url = "https://api.ipgeolocation.io/ipgeo-bulk" + "?" + urlParams;
             List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
-            // List<Geolocation> geolocations = new List<Geolocation>();
-            // foreach (JObject response in apiResponse)
-            // {
-            //     geolocations.Add(new Geolocation(response));
-            // }
+            
             return prepareBulkResponseForUser(apiResponse, "geolocation");
         }
 
@@ -75,9 +72,11 @@ namespace IPGeolocation
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("uaString", uaString);
+
             String jsonStr = JsonConvert.SerializeObject(json);
             String url = "https://api.ipgeolocation.io/user-agent?apiKey=" + apiKey;
             JObject apiResponse = GetUserAgentApiResponse(jsonStr, url);
+            
             return prepareResponseForUser(apiResponse, "useragent");
         }
 
@@ -85,9 +84,11 @@ namespace IPGeolocation
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("uaStrings", uaStrings);
+
             String jsonStr = JsonConvert.SerializeObject(json);
             String url = "https://api.ipgeolocation.io/user-agent-bulk?apiKey=" + apiKey;
             List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
+            
             return prepareBulkResponseForUser(apiResponse, "useragent");
         }
 
@@ -96,6 +97,7 @@ namespace IPGeolocation
             StringBuilder urlParams = new StringBuilder(80);
             urlParams.Append("apiKey=");
             urlParams.Append(apiKey);
+
             if (geolocationParams != null)
             {
                 if (!Strings.IsNullOrEmpty(geolocationParams.GetIPAddress()))
@@ -103,12 +105,15 @@ namespace IPGeolocation
                     urlParams.Append("&ip=");
                     urlParams.Append(geolocationParams.GetIPAddress());
                 }
+
                 if (!Strings.IsNullOrEmpty(geolocationParams.GetFields()))
                 {
                     urlParams.Append("&fields=");
                     urlParams.Append(geolocationParams.GetFields());
                 }
+                
                 bool includeHost = false;
+                
                 if (geolocationParams.IsIncludeHostname())
                 {
                     urlParams.Append("&include=hostname");
@@ -124,6 +129,7 @@ namespace IPGeolocation
                     urlParams.Append("&include=liveHostname");
                     includeHost = true;
                 }
+                
                 if (geolocationParams.IsIncludeSecurity())
                 {
                     if (includeHost)
@@ -135,6 +141,7 @@ namespace IPGeolocation
                         urlParams.Append("&include=security");
                     }
                 }
+                
                 if (geolocationParams.IsIncludeUserAgentDetail())
                 {
                     if (includeHost || geolocationParams.IsIncludeSecurity())
@@ -146,25 +153,30 @@ namespace IPGeolocation
                         urlParams.Append("&include=useragent");
                     }
                 }
+                
                 if (!Strings.IsNullOrEmpty(geolocationParams.GetLang()))
                 {
                     urlParams.Append("&lang=");
                     urlParams.Append(geolocationParams.GetLang());
                 }
+                
                 if (!Strings.IsNullOrEmpty(geolocationParams.GetExcludes()))
                 {
                     urlParams.Append("&excludes=");
                     urlParams.Append(geolocationParams.GetExcludes());
                 }
             }
+
             return urlParams.ToString();
         }
 
         private String BuildTimezoneUrlParams(TimezoneParams timezoneParams)
         {
             StringBuilder urlParams = new StringBuilder(80);
+            
             urlParams.Append("apiKey=");
             urlParams.Append(apiKey);
+            
             if (timezoneParams != null)
             {
                 if (!Strings.IsNullOrEmpty(timezoneParams.GetIPAddress()))
@@ -172,13 +184,16 @@ namespace IPGeolocation
                     urlParams.Append("&ip=");
                     urlParams.Append(timezoneParams.GetIPAddress());
                 }
+                
                 if (!Strings.IsNullOrEmpty(timezoneParams.GetTimezone()))
                 {
                     urlParams.Append("&tz=");
                     urlParams.Append(timezoneParams.GetTimezone());
                 }
+                
                 bool latValue = (timezoneParams.GetLatitude() >= -90) && (timezoneParams.GetLatitude() <= 90);
                 bool longValue = (timezoneParams.GetLongitude() >= -180) && (timezoneParams.GetLongitude() <= 180);
+                
                 if (latValue && longValue)
                 {
                     urlParams.Append("&lat=");
@@ -186,17 +201,20 @@ namespace IPGeolocation
                     urlParams.Append("&long=");
                     urlParams.Append(timezoneParams.GetLongitude());
                 }
+                
                 if (!Strings.IsNullOrEmpty(timezoneParams.GetLang()))
                 {
                     urlParams.Append("&lang=");
                     urlParams.Append(timezoneParams.GetLang());
                 }
+                
                 if (!Strings.IsNullOrEmpty(timezoneParams.GetLocation()))
                 {
                     urlParams.Append("&location=");
                     urlParams.Append(timezoneParams.GetLocation());
                 }
             }
+
             return urlParams.ToString();
         }
 
@@ -216,6 +234,7 @@ namespace IPGeolocation
         {
             var responseString = "";
             int responseStatusCode = 0;
+
             try
             {
                 var request = HttpWebRequest.Create(url);
@@ -223,11 +242,14 @@ namespace IPGeolocation
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
+
                 using (var stream = request.GetRequestStream())
                 {
                     stream.Write(data, 0, data.Length);
                 }
+                
                 var response = (HttpWebResponse)request.GetResponse();
+                
                 responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 responseStatusCode = (int)response.StatusCode;
             }
@@ -239,8 +261,10 @@ namespace IPGeolocation
                     responseString = reader.ReadToEnd().ToString();
                 }
             }
+            
             JObject finalResponse = ConvertStringToListMapUserAgent(responseStatusCode, responseString);
             finalResponse.Add("status", responseStatusCode);
+
             return finalResponse;
         }
 
@@ -248,16 +272,20 @@ namespace IPGeolocation
         {
             String url = "https://api.ipgeolocation.io/" + api + "?" + urlParams;
             HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
+
             webrequest.Method = "GET";
             webrequest.ContentType = "application/json";
+            
             HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
             Encoding enc = System.Text.Encoding.GetEncoding("utf-8");
             StreamReader responseStream = new StreamReader(webresponse.GetResponseStream(), enc);
             String result = String.Empty;
             result = responseStream.ReadToEnd();
+            
             JObject response = JObject.Parse(result);
             response.Add("status", (int)webresponse.StatusCode);
             webresponse.Close();
+            
             return response;
         }
 
@@ -265,17 +293,21 @@ namespace IPGeolocation
         {
             var responseString = "";
             int responseStatusCode = 0;
+
             try
             {
                 var request = HttpWebRequest.Create(url);
                 var data = Encoding.ASCII.GetBytes(ipsJson);
+                
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
+                
                 using (var stream = request.GetRequestStream())
                 {
                     stream.Write(data, 0, data.Length);
                 }
+                
                 var response = (HttpWebResponse)request.GetResponse();
                 responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 responseStatusCode = (int)response.StatusCode;
@@ -288,6 +320,7 @@ namespace IPGeolocation
                     responseString = reader.ReadToEnd().ToString();
                 }
             }
+
             return ConvertStringToListMap(responseStatusCode, responseString);
         }
 
@@ -295,6 +328,7 @@ namespace IPGeolocation
         {
             List<JObject> finalResult = new List<JObject>();
             List<JObject> list;
+
             if (responseCode != 200)
             {
                 response = "[" + response + "]";
@@ -304,17 +338,20 @@ namespace IPGeolocation
             {
                 list = JsonConvert.DeserializeObject<List<JObject>>(response);
             }
+            
             foreach (JObject map in list)
             {
                 map.Add("status", responseCode);
                 finalResult.Add(map);
             }
+            
             return finalResult;
         }
 
         private JObject ConvertStringToListMapUserAgent(int responseCode, String response)
         {
             JObject jsonObject;
+            
             if (responseCode != 200)
             {
                 jsonObject = JsonConvert.DeserializeObject<JObject>(response);
@@ -323,6 +360,7 @@ namespace IPGeolocation
             {
                 jsonObject = JsonConvert.DeserializeObject<JObject>(response);
             }
+            
             return jsonObject;
         }
 
@@ -366,19 +404,23 @@ namespace IPGeolocation
             if (httpStatus == 200 && type.Equals("geolocation"))
             {
                 List<Geolocation> list = new List<Geolocation>();
+
                 for (int i = 0; i < apiResponseList.Count; i++)
                 {
                     list.Add(new Geolocation(apiResponseList[i]));
                 }
+                
                 response.Add("response", list);
             }
             else if (httpStatus == 200 && type.Equals("useragent"))
             {
                 List<UserAgent> list = new List<UserAgent>();
+
                 for (int i = 0; i < apiResponseList.Count; i++)
                 {
                     list.Add(new UserAgent(apiResponseList[i]));
                 }
+                
                 response.Add("response", list);
             }
 

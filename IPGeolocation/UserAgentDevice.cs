@@ -44,6 +44,5 @@ namespace IPGeolocation
         {
             return cpu;
         }
-
     }
 }

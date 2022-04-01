@@ -79,6 +79,7 @@ namespace IPGeolocation
 
             token = json.GetValue("geo");
             JObject geoJson = token != null ? token.ToObject<JObject>() : null;
+            
             if (geoJson == null)
             {
                 this.timezoneGeo = new TimezoneGeo();

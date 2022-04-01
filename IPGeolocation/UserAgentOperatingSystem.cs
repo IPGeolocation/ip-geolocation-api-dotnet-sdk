@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json.Linq;
+
 namespace IPGeolocation
 {
     public class UserAgentOperatingSystem
@@ -22,7 +23,6 @@ namespace IPGeolocation
 
             token = json.GetValue("versionMajor");
             this.versionMajor = token != null ? token.ToObject<String>() : null;
-
         }
 
         public String GetName()
@@ -44,6 +44,5 @@ namespace IPGeolocation
         {
             return versionMajor;
         }
-
     }
 }

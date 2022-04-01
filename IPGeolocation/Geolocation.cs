@@ -5,8 +5,6 @@ namespace IPGeolocation
 {
     public class Geolocation
     {
-        // private int status;
-        // private String message;
         private String domain;
         private String ipAddress;
         private String hostname;
@@ -116,6 +114,7 @@ namespace IPGeolocation
 
             token = json.GetValue("currency");
             JObject currencyJson = token != null ? token.ToObject<JObject>() : null;
+
             if (currencyJson == null)
             {
                 this.currency = new GeolocationCurrency();
@@ -126,7 +125,9 @@ namespace IPGeolocation
             }
 
             token = json.GetValue("time_zone");
+
             JObject timezoneJson = token != null ? token.ToObject<JObject>() : null;
+            
             if (timezoneJson == null)
             {
                 this.timezone = new GeolocationTimezone();
@@ -137,7 +138,9 @@ namespace IPGeolocation
             }
 
             token = json.GetValue("security");
+
             JObject securityJson = token != null ? token.ToObject<JObject>() : null;
+            
             if (securityJson == null)
             {
                 this.security = new GeolocationSecurity();
@@ -148,7 +151,9 @@ namespace IPGeolocation
             }
 
             token = json.GetValue("user_agent");
+
             JObject userAgentJson = token != null ? token.ToObject<JObject>() : null;
+            
             if (userAgentJson == null)
             {
                 this.userAgentDetail = new UserAgent();
