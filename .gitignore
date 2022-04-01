@@ -3,3 +3,6 @@
 IPGeolocation/obj/
 .fake
 .ionide
+
+# Files
+IPGeolocation/Main.cs
