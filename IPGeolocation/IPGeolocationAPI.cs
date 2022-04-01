@@ -271,8 +271,7 @@ namespace IPGeolocation
         private JObject GetApiResponse(String api, String urlParams)
         {
             String url = "https://api.ipgeolocation.io/" + api + "?" + urlParams;
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
-
+            var webrequest = HttpWebRequest.Create(url);
             webrequest.Method = "GET";
             webrequest.ContentType = "application/json";
             
