@@ -2,20 +2,20 @@
 <package >
   <metadata>
     <id>IPGeolocation.IPGeolocation</id>
-    <version>1.0.10</version>
+    <version>2.0.0</version>
     <title>IPGeoLocation API SDK</title>
     <authors>ipgeolocation.io</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://ipgeolocation.io/static/flags/ipgeo-dark.png</iconUrl>
     <description>Use this SDK to fully leverage IPGeolocation API</description>
-    <releaseNotes>First release</releaseNotes>
+    <releaseNotes>.NET 6 release</releaseNotes>
     <copyright>Copyright 2018 (c) Ipgeolocation Corporation. All rights reserved.</copyright>
     <dependencies>
-    <dependency id="Newtonsoft.Json" version="13.0.1" />
+    <dependency id="Newtonsoft.Json" version="13.0.3" />
 
    </dependencies>
    </metadata>
    <files>
-    <file src="bin/Debug/netcoreapp6.0.3/ipgeolocation.dll" target="lib/netcoreapp6.0.0" />
+    <file src="bin/Debug/net6.0/IPGeolocation.dll" target="lib/net6.0" />
    </files>
 </package>

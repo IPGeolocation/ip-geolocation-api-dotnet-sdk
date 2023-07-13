@@ -1,7 +1,13 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPGeolocation", "IPGeolocation\IPGeolocation.csproj", "{5F73CAA8-4E60-4329-B146-87472FB8054D}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPGeolocation", "IPGeolocation\IPGeolocation.csproj", "{5F73CAA8-4E60-4329-B146-87472FB8054D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8E9BE24-4497-4C8F-8D8D-9DE7F15DD852}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +19,11 @@ Global
 		{5F73CAA8-4E60-4329-B146-87472FB8054D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F73CAA8-4E60-4329-B146-87472FB8054D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F73CAA8-4E60-4329-B146-87472FB8054D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {71E03D23-9840-4BEB-B0D2-2AB5849986C1}
 	EndGlobalSection
 EndGlobal

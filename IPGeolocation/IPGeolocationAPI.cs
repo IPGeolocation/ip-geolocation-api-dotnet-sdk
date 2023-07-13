@@ -1,28 +1,26 @@
-﻿using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net;
+using System.Text;
 
 namespace IPGeolocation
 {
-
-    public class IPGeolocationAPI
+    public class IPGeolocationAPI : IIpGeoLocationApi
     {
 
         private String apiKey;
 
-        public IPGeolocationAPI(String apiKey)
+        public IPGeolocationAPI(IOptions<IpGeoLocationOptions> options)
         {
-            if (Strings.IsNullOrEmpty(apiKey))
+            IpGeoLocationOptions ipGeoLocationOptions = options.Value;
+            if (Strings.IsNullOrEmpty(ipGeoLocationOptions.ApiKey))
             {
                 throw new ArgumentException("API key must not be null or empty");
             }
             else
             {
-                this.apiKey = apiKey;
+                this.apiKey = ipGeoLocationOptions.ApiKey;
             }
         }
 
