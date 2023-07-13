@@ -27,17 +27,17 @@ Note: Internet connection is required to run this component.
 ## Installation
 ### Package Manager
 ```cli
-$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.0.10
+$ Install-Package IpGeoLocation.IpGeoLocation -Version 1.1.0
 ```
 
 ### .NET CLI
 ```cli
-$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.0.10
+$ dotnet add package IpGeoLocation.IpGeoLocation --version 1.1.0
 ```
 
 ### Paket CLI
 ```cli
-$ paket add IpGeoLocation.IpGeoLocation --version 1.0.10
+$ paket add IpGeoLocation.IpGeoLocation --version 1.1.0
 ```
 
 ## Documentation
