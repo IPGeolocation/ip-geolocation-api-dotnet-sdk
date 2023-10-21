@@ -5,6 +5,8 @@ namespace IPGeolocation
 {
     public class UserAgent
     {
+        private int status;
+        private String message;
         private String userAgentString;
         private String name;
         private String type;
@@ -20,6 +22,12 @@ namespace IPGeolocation
         
         public UserAgent(JObject json)
         {
+            JToken token = json.GetValue("status");
+            this.status = token != null ? token.ToObject<int>() : null;
+
+            JToken token = json.GetValue("message");
+            this.message = token != null ? token.ToObject<String>() :null;
+
             JToken token = json.GetValue("userAgentString");
             this.userAgentString = token != null ? token.ToObject<String>() : null;
 
@@ -47,6 +55,14 @@ namespace IPGeolocation
             JObject operatingSystemJson = token != null ? token.ToObject<JObject>() : null;
             
             this.operatingSystem = new UserAgentOperatingSystem(operatingSystemJson);
+        }
+        public int GetStatus()
+        {
+            return status;
+        }
+        public String GetMessage()
+        {
+            return message;
         }
 
         public String GetUserAgentString()

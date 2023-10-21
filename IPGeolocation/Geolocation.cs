@@ -5,6 +5,8 @@ namespace IPGeolocation
 {
     public class Geolocation
     {
+        private int status;
+        private String message;
         private String domain;
         private String ipAddress;
         private String hostname;
@@ -37,6 +39,12 @@ namespace IPGeolocation
 
         public Geolocation(JObject json)
         {
+            JToken token = json.GetValue("status");
+            this.status = token != null ? token.ToObject<int>() : null;
+
+            JToken token = json.GetValue("message");
+            this.message = token != null ? token.ToObject<String>() :null;
+
             JToken token = json.GetValue("domain");
             this.domain = token != null ? token.ToObject<String>() : null;
 
@@ -164,6 +172,14 @@ namespace IPGeolocation
             }
         }
 
+        public int GetStatus()
+        {
+            return status;
+        }
+        public String GetMessage()
+        {
+            return message;
+        }
         public String GetDomain()
         {
             return domain;

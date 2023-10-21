@@ -31,19 +31,19 @@ namespace IPGeolocation
             return this.apiKey;
         }
 
-        public Dictionary<String, Object> GetGeolocation()
+        public Geolocation GetGeolocation()
         {
             JObject apiResponse = GetApiResponse("ipgeo", "apiKey=" + apiKey);
-            return prepareResponseForUser(apiResponse, "geolocation");
+            return prepareResponseForUser(apiResponse, "geolocation")["response"];
         }
 
-        public Dictionary<String, Object> GetGeolocation(GeolocationParams geolocationParams)
+        public Geolocation GetGeolocation(GeolocationParams geolocationParams)
         {
             JObject apiResponse = GetGeolocationResponse(geolocationParams);
-            return prepareResponseForUser(apiResponse, "geolocation");
+            return prepareResponseForUser(apiResponse, "geolocation")["response"];
         }
 
-        public Dictionary<String, Object> GetBulkGeolocation(GeolocationParams geolocationParams)
+        public List<Geolocation> GetBulkGeolocation(GeolocationParams geolocationParams)
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("ips", geolocationParams.GetIPAddresses());
@@ -53,22 +53,22 @@ namespace IPGeolocation
             String url = "https://api.ipgeolocation.io/ipgeo-bulk" + "?" + urlParams;
             List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
             
-            return prepareBulkResponseForUser(apiResponse, "geolocation");
+            return prepareBulkResponseForUser(apiResponse, "geolocation")["response"];
         }
 
-        public Dictionary<String, Object> GetTimezone()
+        public Timezone GetTimezone()
         {
             JObject apiResponse = GetApiResponse("timezone", "apiKey=" + apiKey);
-            return prepareResponseForUser(apiResponse, "timezone");
+            return prepareResponseForUser(apiResponse, "timezone")["response"];
         }
 
-        public Dictionary<String, Object> GetTimezone(TimezoneParams timezoneParams)
+        public Timezone GetTimezone(TimezoneParams timezoneParams)
         {
             JObject apiResponse = GetTimezoneResponse(timezoneParams);
-            return prepareResponseForUser(apiResponse, "timezone");
+            return prepareResponseForUser(apiResponse, "timezone")["response"];
         }
 
-        public Dictionary<String, Object> GetUserAgent(String uaString)
+        public UserAgent GetUserAgent(String uaString)
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("uaString", uaString);
@@ -77,10 +77,10 @@ namespace IPGeolocation
             String url = "https://api.ipgeolocation.io/user-agent?apiKey=" + apiKey;
             JObject apiResponse = GetUserAgentApiResponse(jsonStr, url);
             
-            return prepareResponseForUser(apiResponse, "useragent");
+            return prepareResponseForUser(apiResponse, "useragent")["response"];
         }
 
-        public Dictionary<String, Object> GetBulkUserAgent(List<String> uaStrings)
+        public List<UserAgent> GetBulkUserAgent(List<String> uaStrings)
         {
             Dictionary<String, Object> json = new Dictionary<String, Object>();
             json.Add("uaStrings", uaStrings);
@@ -89,7 +89,7 @@ namespace IPGeolocation
             String url = "https://api.ipgeolocation.io/user-agent-bulk?apiKey=" + apiKey;
             List<JObject> apiResponse = GetBulkApiResponse(jsonStr, url);
             
-            return prepareBulkResponseForUser(apiResponse, "useragent");
+            return prepareBulkResponseForUser(apiResponse, "useragent")["response"];
         }
 
         private String BuildGeolocationUrlParams(GeolocationParams geolocationParams)

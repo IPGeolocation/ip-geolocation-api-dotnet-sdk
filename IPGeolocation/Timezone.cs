@@ -5,6 +5,8 @@ namespace IPGeolocation
 {
     public class Timezone
     {
+        private int status;
+        private String message;
         private String timezone;
         private Double timezoneOffset;
         private Double timezoneOffsetWithDST;
@@ -26,6 +28,12 @@ namespace IPGeolocation
 
         public Timezone(JObject json)
         {
+            JToken token = json.GetValue("status");
+            this.status = token != null ? token.ToObject<int>() : null;
+
+            JToken token = json.GetValue("message");
+            this.message = token != null ? token.ToObject<String>() :null;
+            
             JToken token = json.GetValue("timezone");
             this.timezone = token != null ? token.ToObject<String>() : null;
 
@@ -88,6 +96,15 @@ namespace IPGeolocation
             {
                 this.timezoneGeo = new TimezoneGeo(geoJson);
             }
+        }
+
+        public int GetStatus()
+        {
+            return status;
+        }
+        public String GetMessage()
+        {
+            return message;
         }
 
         public String GetTimezone()
