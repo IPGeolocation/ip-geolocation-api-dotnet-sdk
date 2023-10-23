@@ -59,11 +59,12 @@ geoParams.SetIPAddress("1.1.1.1");
 geoParams.SetFields("geo,time_zone,currency");
 geoParams.SetIncludeSecurity(true);
 
-Geolocation geolocation = api.GetGeolocation(geoParams);
+Dictionary<String, Object> response = api.GetGeolocation(geoParams);
 
 // Check if geolocation lookup was successful
-if(geolocation.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Geolocation geolocation = (Geolocation) response["response"];
     Console.WriteLine(geolocation.GetCountryName());
     Console.WriteLine(geolocation.GetCurrency().GetName());
     Console.WriteLine(geolocation.GetTimezone().GetCurrentTime());
@@ -79,7 +80,7 @@ if(geolocation.GetStatus() == 200)
 }
 else
 {
-    Console.WriteLine(geolocation.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 
 // Get geolocation in Russian** for IP address (1.1.1.1) and all fields
@@ -87,30 +88,32 @@ GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddress("1.1.1.1");
 geoParams.SetLang("ru");
 
-Geolocation geolocation = api.GetGeolocation(geoParams);
+Dictionary<String, Object> response = api.GetGeolocation(geoParams);
 
 // Check if geolocation lookup was successful
-if(geolocation.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Geolocation geolocation = (Geolocation) response["response"];
     Console.WriteLine(geolocation.GetIPAddress());
     Console.WriteLine(geolocation.GetCountryName());
 }
 else
 {
-    Console.WriteLine(geolocation.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 
 // Query geolocation for the calling machine's IP address for all fields
-Geolocation geolocation = api.GetGeolocation();
+Dictionary<String, Object> response = api.GetGeolocation();
 
-if(geolocation.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Geolocation geolocation = (Geolocation) response["response"];
     Console.WriteLine(geolocation.GetCountryCode2());
     Console.WriteLine(geolocation.GetTimezone().GetCurrentTime());
 }
 else
 {
-    Console.WriteLine(geolocation.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 ```
 
@@ -120,14 +123,23 @@ else
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
 GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddresses(ips);
-geoParams.setLang("de");
+geoParams.SetLang("de");
 
-List<Geolocation> geolocations = api.GetBulkGeolocation(geoParams);
+Dictionary<String, Object> response = api.GetBulkGeolocation(geoParams);
 
+if(response["status"] == 200)
+{
+
+List<Geolocation> geolocations = (List<Geolocation>) response["response"];
 Console.WriteLine(geolocations.Count);
 Console.WriteLine(geolocations[0].GetCountryName());
 Console.WriteLine(geolocations[1].GetLanguages());
 Console.WriteLine(geolocations[2].GetTimezone().GetCurrentTime());
+}
+else
+{
+    Console.WriteLine(response["message"]);
+}
 
 // Query geolocations for multiple IP addresses but only geo field
 String[] ips = new String[]{"1.1.1.1", "2.2.2.2", "3.3.3.3"};
@@ -135,74 +147,86 @@ GeolocationParams geoParams = new GeolocationParams();
 geoParams.SetIPAddresses(ips);
 geoParams.SetFields("geo");
 
-List<Geolocation> geolocations = api.GetBulkGeolocation(geoParams);
+Dictionary<String, Object> response = api.GetBulkGeolocation(geoParams);
 
-Console.WriteLine(geolocations.Count);
-Console.WriteLine(geolocations[0].GetCountryCode2());
-Console.WriteLine(geolocations[1].GetCountryName());
-Console.WriteLine(geolocations[2].GetLatitude());
+if(response["status"] == 200)
+{
+    List<Geolocation> geolocations = (List<Geolocation>) response["response"];
+    Console.WriteLine(geolocations.Count);
+    Console.WriteLine(geolocations[0].GetCountryCode2());
+    Console.WriteLine(geolocations[0].GetCountryName());
+    Console.WriteLine(geolocations[0].GetLatitude());
+}
+else
+{
+    Console.WriteLine(response["message"]);
+}
 ```
 
 ### Timezone API
 ```c#
 // Query time zone information by time zone ID
 TimezoneParams tzParams = new TimezoneParams();
-tzParams.SetTimezone(“America/New_York”);
+tzParams.SetTimezone("America/New_York");
 
-Timezone tz = api.GetTimezone(tzParams);
+Dictionary<String, Object> response = api.GetTimezone(tzParams);
 
-if(tz.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Timezone tz = (Timezone) response["response"];
     Console.WriteLine(tz.GetDateTimeWti());
     Console.WriteLine(tz.GetDateTimeTxt());
 }
 else
 {
-    Console.WriteLine(tz.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 
 // Query time zone information by latitude and longitude of the location
 TimezoneParams tzParams = new TimezoneParams();
-tzParams.SetLocation(37.1838139, -123.8105225);
+tzParams.SetCoordinates(37.1838139, -123.8105225);
 
-Timezone tz = api.GetTimezone(tzParams);
+Dictionary<String, Object> response = api.GetTimezone(tzParams);
 
-if(tz.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Timezone tz = (Timezone) response["response"];
     Console.WriteLine(tz.GetTimezone());
 }
 else
 {
-    Console.WriteLine(tz.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 
 // Get time zone information for IP address (1.1.1.1) and geolocation information Japanese**
 TimezoneParams tzParams = new TimezoneParams();
 tzParams.SetIPAddress("1.1.1.1");
-tzParams.setLang("ja");
+tzParams.SetLang("ja");
 
-Timezone tz = api.GetTimezone(tzParams);
+Dictionary<String, Object> response = api.GetTimezone(tzParams);
 
-if(tz.GetStatus() == 200)
+if(response["status"] == 200)
 {
+    Timezone tz = (Timezone) response["response"];
     Console.WriteLine(tz.GetTimezone());
 }
 else
 {
-    Console.WriteLine(tz.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 
 // Query time zone information for calling machine’s IP address
-Timezone tz = api.GetTimezone();
+Dictionary<String, Object> response = api.GetTimezone();
 
-if(tz.getMessage())
+if(response["status"] == 200)
 {
+    Timezone tz = (Timezone) response["response"];
     Console.WriteLine(tz.GetTimezone());
     Console.WriteLine(tz.GetDateTimeYmd());
 }
 else
 {
-    Console.WriteLine(tz.GetMessage());
+    Console.WriteLine(response["message"]);
 }
 ```
 
