@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ip-geolocation-api-dotnet-sdk.iml" filepath="$PROJECT_DIR$/.idea/ip-geolocation-api-dotnet-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dotnet-new-sdk-elevation-correct.iml" filepath="$PROJECT_DIR$/.idea/dotnet-new-sdk-elevation-correct.iml" />
     </modules>
   </component>
 </project>
