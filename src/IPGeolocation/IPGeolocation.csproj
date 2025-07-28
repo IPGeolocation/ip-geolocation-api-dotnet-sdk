@@ -5,7 +5,7 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>IPGeolocation</AssemblyName>
-    <PackageId>IPGeolocation</PackageId>
+    <PackageId>IPGeoLocation.IPGeolocation</PackageId>
     <Authors>IPGeolocation Developers</Authors>
     <Company>IPGeolocation.io</Company>
     <AssemblyTitle>IP Geolocation API .NET SDK</AssemblyTitle>
