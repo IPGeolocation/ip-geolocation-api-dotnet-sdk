@@ -9,7 +9,7 @@
     <Authors>IPGeolocation Developers</Authors>
     <Company>IPGeolocation.io</Company>
     <AssemblyTitle>IP Geolocation API .NET SDK</AssemblyTitle>
-    <Description>A library generated from a OpenAPI doc</Description>
+    <Description>A lightweight and efficient .NET SDK for accessing IPGeolocation.io APIs, including Geolocation, Timezone, ASN, Security, and more.</Description>
     <RootNamespace>IPGeolocation</RootNamespace>
     <Version>2.0.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\IPGeolocation.xml</DocumentationFile>

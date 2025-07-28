@@ -1154,7 +1154,6 @@ namespace IPGeolocation.Api
                     if (acceptLocalVar != null)
                         httpRequestMessageLocalVar.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(acceptLocalVar));
                     httpRequestMessageLocalVar.Method = new HttpMethod("GET");
-                    httpRequestMessageLocalVar.Headers.UserAgent.ParseAdd("IPGeolocation.NET-SDK/2.0.0");
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
