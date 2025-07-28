@@ -1,0 +1,8 @@
+
+image: Visual Studio 2019
+clone_depth: 1
+build_script:
+- dotnet build -c Release
+- dotnet test -c Release
+after_build:
+- dotnet pack .\src\IPGeolocation\IPGeolocation.csproj -o ../../output -c Release --no-build
