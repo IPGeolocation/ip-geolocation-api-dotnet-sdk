@@ -14,5 +14,5 @@ Name | Type | Description | Notes
 **CountryMetadata** | [**CountryMetadata**](CountryMetadata.md) |  | [optional] 
 **Currency** | [**Currency**](Currency.md) |  | [optional] 
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#api-endpoints) [[Back to README]](../../README.md)
 

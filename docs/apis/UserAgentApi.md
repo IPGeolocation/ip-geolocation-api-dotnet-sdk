@@ -48,7 +48,7 @@ User Agent Parser API provides the accurate browser, device, and operating syste
 | **499** | Client Closed Request – Client terminated connection before completion |  -  |
 | **500** | Internal Server Error – Something went wrong on our end |  -  |
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#api-endpoints) [[Back to Model list]](../../README.md#models) [[Back to README]](../../README.md)
 
 <a id="parsebulkuseragentstrings"></a>
 # **ParseBulkUserAgentStrings**
@@ -90,7 +90,7 @@ This endpoint allows you to perform the parsing of multiple User-Angent strings 
 | **499** | Client Closed Request – Client terminated connection before completion |  -  |
 | **500** | Internal Server Error – Something went wrong on our end |  -  |
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#api-endpoints) [[Back to Model list]](../../README.md#models) [[Back to README]](../../README.md)
 
 <a id="parseuseragentstring"></a>
 # **ParseUserAgentString**
@@ -132,5 +132,5 @@ You can also provide custom User-Agent string to parse in JSON payload. This end
 | **499** | Client Closed Request – Client terminated connection before completion |  -  |
 | **500** | Internal Server Error – Something went wrong on our end |  -  |
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#api-endpoints) [[Back to Model list]](../../README.md#models) [[Back to README]](../../README.md)
 
