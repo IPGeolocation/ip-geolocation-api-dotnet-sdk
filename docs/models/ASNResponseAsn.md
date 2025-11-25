@@ -21,5 +21,5 @@ Name | Type | Description | Notes
 **Peers** | [**List&lt;ASNConnection&gt;**](ASNConnection.md) | It will only be included in the response, if you set include&#x3D;peers in the request | [optional] 
 **WhoisResponse** | **string** | It will only be included in the response, if you set include&#x3D;whois_response in the request | [optional] 
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#api-endpoints) [[Back to README]](../../README.md)
 
