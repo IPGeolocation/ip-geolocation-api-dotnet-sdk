@@ -28,7 +28,7 @@ Based on:
    - [Using .NET CLI](#using-net-cli)
    - [Using NuGet Package Manager](#using-nuget-package-manager)
    - [Using Paket CLI](#using-paket-cli)
-3. [API Plan Tiers and Documentation](#api-plan-tiers-and-documentation)
+3. [API Documentation Links](#api-documentations)
 4. [API Endpoints](#api-endpoints)
 5. [Fields and Methods Availability](#fields-and-methods-availability)
 6. [Authentication Setup](#authentication-setup)
@@ -98,14 +98,17 @@ NuGet\Install-Package IPGeoLocation.IPGeolocation -Version 2.0.0
 paket add IPGeoLocation.IPGeolocation -Version 2.0.0
 ```
 
-## API Plan Tiers and Documentation
+## API Documentations
 
-The documentation below corresponds to the four available API tier plans:
-
-- **Developer Plan** (Free): [Full Documentation](https://ipgeolocation.io/ip-location-api.html#Free)
-- **Standard Plan**: [Full Documentation](https://ipgeolocation.io/ip-location-api.html#Standard)
-- **Advance Plan**: [Full Documentation](https://ipgeolocation.io/ip-location-api.html#Advance)
-- **Security Plan**: [Full Documentation](https://ipgeolocation.io/ip-security-api.html#documentation-overview)
+The documentation below corresponds to the available APIs:
+- [**Overview**](https://ipgeolocation.io/documentation.html)
+- [**IP GeoLocation API**](https://ipgeolocation.io/documentation/ip-location-api.html)
+- [**IP Security API**](https://ipgeolocation.io/documentation/ip-security-api.html)
+- [**ASN API**](https://ipgeolocation.io/documentation/asn-api.html)
+- [**IP Abuse Contact API**](https://ipgeolocation.io/documentation/ip-abuse-contact-api.html)
+- [**Timezone API**](https://ipgeolocation.io/documentation/timezone-api.html)
+- [**User-Agent API**](https://ipgeolocation.io/documentation/user-agent-api.html)
+- [**Astronomy API**](https://ipgeolocation.io/documentation/astronomy-api.html)
 
 For a detailed comparison of what each plan offers, visit the [Pricing Page](https://ipgeolocation.io/pricing.html).
 
@@ -147,7 +150,7 @@ IP Geolocation offers four plans from billing point of view: **Free, Standard, S
 | *UserAgentApi*      | [**parseBulkUserAgentStrings**](https://github.com/IPGeolocation/ip-geolocation-api-dotnet-sdk/blob/HEAD/docs/apis/UserAgentApi.md#parsebulkuseragentstrings)           |  ✖   |    ✔     |    ✔     |    ✔    |
 
 > [!TIP]
-> The availability of fields in every API endpoint across all API plans is provided in the **_Reference Table_** within each respective API Documentation. e.g., for IPGeolocationApi, please visit [https://ipgeolocation.io/ip-location-api.html#reference-to-ipgeolocation-api-response](https://ipgeolocation.io/ip-location-api.html#reference-to-ipgeolocation-api-response).
+> The availability of fields in every API endpoint across Free and Paid plans is provided in the **_Reference Table_** within each respective API Documentation. e.g., for IPGeolocationApi, please visit [https://ipgeolocation.io/documentation/ip-location-api.html#reference-to-ipgeolocation-api-response](https://ipgeolocation.io/documentation/ip-location-api.html#reference-to-ipgeolocation-api-response).
 
 ## Authentication Setup
 You’ll need an API key from [ipgeolocation.io](https://ipgeolocation.io).
@@ -199,7 +202,7 @@ This section demonstrates usage of the `GetIpGeolocationAsync` method from the S
   - `dma`
   - `time_zone`
 
-For full API details, refer to the [IP Geolocation API Documentation](https://ipgeolocation.io/ip-location-api.html#documentation-overview)
+For full API details, refer to the [IP Geolocation API Documentation](https://ipgeolocation.io/documentation/ip-location-api.html)
 
 The `ip` parameter in the SDK can accept any valid IPv4 address, IPv6 address, or domain name. If the `ip` parameter is omitted, the API will return information about the public IP address of the device or server where the SDK is executed.
 
@@ -624,7 +627,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Ok(), new JsonSerializerOpti
 
 This section demonstrates how to use the IP Security API provided by the SDK. These examples show different ways to query threat intelligence and risk metadata for IP addresses using optional parameters like `fields`, `include`, and `excludes`.
 
-For detailed API specs, refer to the [IP Security API documentation](https://ipgeolocation.io/ip-security-api.html#documentation-overview).
+For detailed API specs, refer to the [IP Security API documentation](https://ipgeolocation.io/documentation/ip-security-api.html).
 
 ### Get Default Security Info
 ```csharp
@@ -672,7 +675,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Ok(), new JsonSerializerOpti
 ```
 
 > [!NOTE]
-> You can get all the available fields in standard plan in combination with security data, when subscribed to security plan.
+> You can get all the available fields in a Paid plan in combination with security data, when subscribed to paid plan.
 
 ### Request with Field Filtering
 ```csharp
@@ -720,7 +723,7 @@ This section demonstrates how to use the `GetAsnInfoAsync()` method from the .NE
 > [!NOTE] 
 > ASN API is only available on the Advanced subscription plans.
 
-For more details on supported fields and their usage, refer to the [ASN API documentation](https://ipgeolocation.io/asn-api.html#documentation-overview).
+For more details on supported fields and their usage, refer to the [ASN API documentation](https://ipgeolocation.io/documentation/asn-api.html).
 
 ### Get ASN Information by IP Address
 ```csharp
@@ -861,7 +864,7 @@ This section demonstrates how to use the `GetAbuseContactInfoAsync()` method of 
 > [!NOTE]
 > Abuse Contact API is only available in Advanced Plan.
 
-Refer to the official [Abuse Contact API documentation](https://ipgeolocation.io/ip-abuse-contact-api.html#documentation-overview) for details on all available fields.
+Refer to the official [Abuse Contact API documentation](https://ipgeolocation.io/documentation/ip-abuse-contact-api.html) for details on all available fields.
 
 ### Lookup Abuse Contact by IP
 ```csharp
@@ -956,7 +959,7 @@ This section demonstrates how to use the `GetTimezoneInfoAsync()` method from th
 
 You can query using various types of inputs: Time Zone name, Latitude/Longitude, Address, IP, IATA/ICAO/UN LOCODE, or even no input (defaults to caller's IP).
 
-For full API specifications, refer to the [Timezone API documentation](https://ipgeolocation.io/timezone-api.html#documentation-overview).
+For full API specifications, refer to the [Timezone API documentation](https://ipgeolocation.io/documentation/timezone-api.html).
 
 ### Get Timezone by IP Address
 ```csharp
@@ -1317,7 +1320,7 @@ Sample Response:
 ## Timezone Converter API Examples
 This section provides usage examples of the `ConvertTimeBetweenTimezonesAsync()` method from the SDK. The Timezone Converter API allows you to convert a specific time from one timezone to another using timezone identifiers, coordinates, or location codes.
 
-For full API reference, see the [Timezone Converter API Documentation](https://ipgeolocation.io/timezone-api.html#convert-time-bw-time-zones).
+For full API reference, see the [Timezone Converter API Documentation](https://ipgeolocation.io/documentation/timezone-api.html#convert-time-between-time-zones).
 
 ### Convert Current Time from One Timezone to Another
 ```csharp
@@ -1356,7 +1359,7 @@ Simply provide the appropriate source and target parameters in the method.
 ## User Agent API Examples
 This section provides usage examples of the `GetUserAgentDetailsAsync()` and GetBulkUserAgentAsync methods from the .NET SDK. The User Agent API extracts and classifies information from user agent strings, including browser, engine, device, OS, and type metadata.
 
-For complete details, see the User Agent API documentation.
+For complete details, see the [User Agent API documentation](https://ipgeolocation.io/documentation/user-agent-api.html).
 
 ### Parse a Basic User Agent String
 ```csharp
@@ -1424,7 +1427,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Ok(), new JsonSerializerOpti
 ## Astronomy API Examples
 This section provides usage examples of the `GetAstronomyDetailsAsync()` method from the SDK, allowing developers to fetch sun and moon timings and position data based on coordinates, IP, or location string.
 
-Refer to the official [Astronomy API documentation](https://ipgeolocation.io/astronomy-api.html#documentation-overview) for more details.
+Refer to the official [Astronomy API documentation](https://ipgeolocation.io/documentation/astronomy-api.html) for more details.
 
 ### Lookup Astronomy Info by Coordinates
 ```csharp
