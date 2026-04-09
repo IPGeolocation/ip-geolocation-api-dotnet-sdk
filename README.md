@@ -40,9 +40,9 @@ Install-Package IPGeoLocation.IPGeolocation
 <PackageReference Include="IPGeoLocation.IPGeolocation" Version="3.0.0" />
 ```
 
-NuGet package: `IPGeoLocation.IPGeolocation`
-Package page: <https://www.nuget.org/packages/IPGeoLocation.IPGeolocation>
-GitHub repository: <https://github.com/IPGeolocation/ip-geolocation-api-dotnet-sdk>
+- NuGet package: `IPGeoLocation.IPGeolocation`
+- Package page: <https://www.nuget.org/packages/IPGeoLocation.IPGeolocation>
+- GitHub repository: <https://github.com/IPGeolocation/ip-geolocation-api-dotnet-sdk>
 
 ## Quick Start
 
