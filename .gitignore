@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+.DS_Store
 *.rsuser
 *.suo
 *.user
@@ -42,6 +43,7 @@ Generated\ Files/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
+[Tt]est[Rr]esults/
 [Bb]uild[Ll]og.*
 
 # NUnit
