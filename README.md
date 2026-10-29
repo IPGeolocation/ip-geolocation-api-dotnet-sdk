@@ -1,4 +1,4 @@
-# IPGeolocation .NET SDK
+# IPGeolocation.io .NET SDK
 
 Official .NET SDK for the IPGeolocation.io IP Geolocation API.
 
@@ -83,7 +83,7 @@ Use `LookupIpGeolocationRequest` and `BulkLookupIpGeolocationRequest` when you w
 
 ## Get Your API Key
 
-Create an IPGeolocation account and copy an API key from your dashboard.
+Create an IPGeolocation.io account and copy an API key from your dashboard.
 
 1. Sign up: <https://app.ipgeolocation.io/signup>
 2. Verify your email if prompted
