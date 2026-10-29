@@ -182,6 +182,7 @@ The examples below assume you already have a configured client in scope:
 
 ```csharp
 using System;
+using System.Linq;
 using IPGeolocation;
 
 var apiKey = Environment.GetEnvironmentVariable("IPGEO_API_KEY")
@@ -221,7 +222,7 @@ var response = await client.LookupIpGeolocationAsync(
         include: new[] { "security", "abuse" }));
 
 Console.WriteLine(response.Data.Security?.ThreatScore);
-Console.WriteLine(response.Data.Abuse?.Emails?[0]);
+Console.WriteLine(response.Data.Abuse?.Emails?.FirstOrDefault());
 ```
 
 ### User-Agent Parsing
