@@ -2,7 +2,7 @@
 
 Official .NET SDK for the IPGeolocation.io IP Geolocation API.
 
-Look up IPv4, IPv6, and domains with `/v3/ipgeo` and `/v3/ipgeo-bulk`. Get geolocation, company, ASN, timezone, network, hostname, abuse, user-agent, and security data from one API.
+Look up IPv4, IPv6, and domains with `/v3/ipgeo` and `/v3/ipgeo-bulk`. Get geolocation, company, ASN, time zone, network, hostname, abuse, user-agent, and security data from one API.
 
 - .NET Standard 2.1 package
 - Async client built on `HttpClient`
@@ -75,7 +75,7 @@ Use `LookupIpGeolocationRequest` and `BulkLookupIpGeolocationRequest` when you w
 | Namespace | `IPGeolocation` |
 | Supported Endpoints | `/v3/ipgeo`, `/v3/ipgeo-bulk` |
 | Supported Inputs | IPv4, IPv6, domain |
-| Main Data Returned | Geolocation, company, ASN, timezone, network, hostname, abuse, user-agent, currency, security |
+| Main Data Returned | Geolocation, company, ASN, time zone, network, hostname, abuse, user-agent, currency, security |
 | Authentication | API key, request-origin auth for `/v3/ipgeo` only |
 | Response Formats | Structured JSON, raw JSON, raw XML |
 | Bulk Limit | Up to 50,000 IPs or domains per request |
