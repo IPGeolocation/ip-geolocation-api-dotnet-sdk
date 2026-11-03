@@ -13,12 +13,17 @@
     <AssemblyName>IPGeolocation</AssemblyName>
     <RootNamespace>IPGeolocation</RootNamespace>
     <PackageId>IPGeoLocation.IPGeolocation</PackageId>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Authors>IPGeolocation.io</Authors>
     <Company>IPGeolocation.io</Company>
     <AssemblyTitle>IPGeolocation .NET SDK</AssemblyTitle>
     <Description>Official .NET SDK for the IPGeolocation.io IP Location API with single and bulk lookup, typed responses, and raw JSON or XML support.</Description>
-    <PackageReleaseNotes>Replaced the old generated multi-API SDK with the new .NET SDK for the IPGeolocation.io IP Location API.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Hide API keys in error messages and details.
+- Handle incomplete or invalid error responses.
+- Fix request handling for very short or very long timeouts.
+- Add Arabic (`ar`) for single and bulk lookups.
+
+Existing public methods and .NET Standard 2.1 support remain unchanged.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://ipgeolocation.io</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>

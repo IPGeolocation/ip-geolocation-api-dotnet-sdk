@@ -3,7 +3,8 @@
   <PropertyGroup>
     <AssemblyName>IPGeolocation.Test</AssemblyName>
     <RootNamespace>IPGeolocation.Test</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TestTargetFramework Condition="'$(TestTargetFramework)' == ''">net8.0</TestTargetFramework>
+    <TargetFramework>$(TestTargetFramework)</TargetFramework>
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>

@@ -13,6 +13,55 @@ namespace IPGeolocation.Test.IpLocation;
 
 public sealed class HttpClientTransportTests
 {
+    [Theory]
+    [InlineData(1L)]
+    [InlineData(9999L)]
+    [InlineData(10000L)]
+    [InlineData(21474836470000L)]
+    [InlineData(25920000000000L)]
+    [InlineData(42949672940000L)]
+    [InlineData(long.MaxValue)]
+    public void PositiveTimeoutsCanBeScheduled(long ticks)
+    {
+        using var source = new CancellationTokenSource();
+        HttpClientTransport.SetTimeout(source, TimeSpan.FromTicks(ticks));
+        source.Cancel();
+        Assert.True(source.IsCancellationRequested);
+    }
+
+    [Theory]
+    [InlineData(long.MaxValue)]
+    [InlineData(21474836480000L)]
+    public async Task LargeTimeoutsDoNotFailBeforeSending(long ticks)
+    {
+        var calls = 0;
+        using var client = new HttpClient(new StubHandler(_ =>
+        {
+            calls++;
+            return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("ok") };
+        }));
+        using var transport = new HttpClientTransport(client);
+
+        var response = await transport.SendAsync(CreateRequest(TimeSpan.FromTicks(ticks), TimeSpan.FromTicks(ticks)), CancellationToken.None);
+
+        Assert.Equal(1, calls);
+        Assert.Equal("ok", response.Body);
+    }
+
+    [Fact]
+    public async Task PreCancelledRequestsRemainCancelled()
+    {
+        using var source = new CancellationTokenSource();
+        source.Cancel();
+        using var client = new HttpClient(new StubHandler(_ => new HttpResponseMessage(HttpStatusCode.OK)));
+        using var transport = new HttpClientTransport(client);
+
+        var task = transport.SendAsync(CreateRequest(), source.Token);
+
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => task);
+        Assert.True(task.IsCanceled);
+    }
+
     [Fact]
     public async Task ReturnsResponseDataAndHeaders()
     {

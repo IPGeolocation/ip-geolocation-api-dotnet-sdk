@@ -8,6 +8,33 @@ namespace IPGeolocation.Test.IpLocation;
 
 public sealed class IpGeolocationClientTests
 {
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    public async Task ArabicIsForwardedByEveryLookupMethod(int method)
+    {
+        var transport = new FakeTransport();
+        transport.QueueResponse(new HttpResponseData(200,
+            method < 2 ? "{\"ip\":\"8.8.8.8\"}" : "[{\"ip\":\"8.8.8.8\"}]",
+            new Dictionary<string, IReadOnlyList<string>>()));
+        using var client = new IpGeolocationClient(new IpGeolocationClientConfig(apiKey: "test-key"), transport);
+        var single = new LookupIpGeolocationRequest(ip: "8.8.8.8", lang: " AR ");
+        var bulk = new BulkLookupIpGeolocationRequest(new[] { "8.8.8.8" }, lang: " AR ");
+
+        switch (method)
+        {
+            case 0: await client.LookupIpGeolocationAsync(single); break;
+            case 1: await client.LookupIpGeolocationRawAsync(single); break;
+            case 2: await client.BulkLookupIpGeolocationAsync(bulk); break;
+            default: await client.BulkLookupIpGeolocationRawAsync(bulk); break;
+        }
+
+        Assert.Contains("lang=ar", transport.LastRequest!.Url);
+        Assert.Contains("apiKey=test-key", transport.LastRequest.Url);
+    }
+
     [Fact]
     public async Task LookupBuildsRequestWithExpectedHeaders()
     {

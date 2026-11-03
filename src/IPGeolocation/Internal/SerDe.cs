@@ -59,7 +59,11 @@ internal static class SerDe
     internal static ApiException ToApiException(int statusCode, string body)
     {
         var message = ExtractApiMessage(body) ?? DefaultApiMessage(statusCode);
+        return CreateApiException(statusCode, message);
+    }
 
+    internal static ApiException CreateApiException(int statusCode, string message)
+    {
         return statusCode switch
         {
             400 => new BadRequestException(message),
@@ -95,7 +99,7 @@ internal static class SerDe
         }
     }
 
-    internal static IReadOnlyList<BulkLookupResult> ParseBulkLookup(string body)
+    internal static IReadOnlyList<BulkLookupResult> ParseBulkLookup(string body, string? apiKey = null)
     {
         try
         {
@@ -108,9 +112,15 @@ internal static class SerDe
             var result = new List<BulkLookupResult>();
             foreach (var item in document.RootElement.EnumerateArray())
             {
+                if (item.ValueKind != JsonValueKind.Object)
+                {
+                    throw new SerializationException("Expected a JSON object for each bulk lookup response item");
+                }
+
                 if (IsBulkError(item))
                 {
-                    result.Add(new BulkLookupError(new BulkLookupErrorDetails(ReadBulkErrorMessage(item))));
+                    var message = ReadErrorMessage(item) ?? "Bulk lookup item failed";
+                    result.Add(new BulkLookupError(new BulkLookupErrorDetails(ErrorSanitizer.Redact(message, apiKey))));
                 }
                 else
                 {
@@ -132,11 +142,19 @@ internal static class SerDe
             && (item.TryGetProperty("error", out _) || (item.TryGetProperty("message", out _) && !item.TryGetProperty("ip", out _)));
     }
 
-    private static string ReadBulkErrorMessage(JsonElement item)
+    private static string? ReadErrorMessage(JsonElement item)
     {
-        return ReadString(item, "message")
-            ?? (item.TryGetProperty("error", out var errorObject) ? ReadString(errorObject, "message") : null)
-            ?? "Bulk lookup item failed";
+        var message = ReadString(item, "message");
+        if (!string.IsNullOrWhiteSpace(message)) return message;
+        if (!item.TryGetProperty("error", out var error)) return null;
+
+        message = error.ValueKind switch
+        {
+            JsonValueKind.Object => ReadString(error, "message"),
+            JsonValueKind.String => error.GetString(),
+            _ => null
+        };
+        return string.IsNullOrWhiteSpace(message) ? null : message;
     }
 
     private static IpGeolocationResponse ParseResponse(JsonElement root)
@@ -305,16 +323,16 @@ internal static class SerDe
             using var document = JsonDocument.Parse(body);
             if (document.RootElement.ValueKind != JsonValueKind.Object)
             {
-                return body.Trim();
+                var message = document.RootElement.ValueKind == JsonValueKind.String ? document.RootElement.GetString() : null;
+                return string.IsNullOrWhiteSpace(message) ? null : message;
             }
 
-            return ReadString(document.RootElement, "message")
-                ?? (document.RootElement.TryGetProperty("error", out var errorObject) ? ReadString(errorObject, "message") : null)
-                ?? body.Trim();
+            return ReadErrorMessage(document.RootElement);
         }
         catch (JsonException)
         {
-            return body.Trim();
+            var trimmed = body.Trim();
+            return trimmed[0] is '{' or '[' or '"' ? null : trimmed;
         }
     }
 

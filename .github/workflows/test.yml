@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / .NET ${{ matrix.dotnet }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        dotnet: ['8.0', '9.0', '10.0']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73
+        with:
+          dotnet-version: ${{ matrix.dotnet }}.x
+      - run: dotnet restore IPGeolocation.sln -p:TestTargetFramework=net${{ matrix.dotnet }} -p:NuGetAudit=true -p:NuGetAuditMode=all '-warnaserror:NU1900,NU1901,NU1902,NU1903,NU1904'
+      - run: dotnet test IPGeolocation.sln --no-restore -c Release -p:TestTargetFramework=net${{ matrix.dotnet }}
+      - run: dotnet pack src/IPGeolocation/IPGeolocation.csproj --no-build -c Release -o artifacts

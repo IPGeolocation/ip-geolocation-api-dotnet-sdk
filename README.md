@@ -37,7 +37,7 @@ Install-Package IPGeoLocation.IPGeolocation
 ```
 
 ```xml
-<PackageReference Include="IPGeoLocation.IPGeolocation" Version="3.0.0" />
+<PackageReference Include="IPGeoLocation.IPGeolocation" Version="3.0.1" />
 ```
 
 - NuGet package: `IPGeoLocation.IPGeolocation`
@@ -144,10 +144,10 @@ Paid plans still need `include` for optional modules. `fields` and `excludes` on
 | `apiKey` | `string?` | unset | Required for bulk lookup. Optional for single lookup if `requestOrigin` is set. |
 | `requestOrigin` | `string?` | unset | Must be an absolute `http` or `https` origin. |
 | `baseUrl` | `string` | `https://api.ipgeolocation.io` | Override the API base URL. |
-| `connectTimeout` | `TimeSpan` | `10` seconds | Time to open the connection. |
-| `readTimeout` | `TimeSpan` | `30` seconds | Time to wait while reading the response body. |
+| `connectTimeout` | `TimeSpan` | `10` seconds | Time to connect and receive response headers. |
+| `readTimeout` | `TimeSpan` | `30` seconds | Time to wait for the next part of the response. |
 
-The client constructor accepts an `IpGeolocationClientConfig`. Timeouts are validated before the request is sent.
+The client constructor accepts an `IpGeolocationClientConfig`. Both timeouts must be greater than zero.
 
 ## Available Methods
 
@@ -168,7 +168,7 @@ The client constructor accepts an `IpGeolocationClientConfig`. Timeouts are vali
 |-------|------------|-------|
 | `ip` | Single lookup | IPv4, IPv6, or domain. Omit it for caller IP lookup. |
 | `ips` | Bulk lookup | Collection of 1 to 50,000 IPs or domains. |
-| `lang` | Single and bulk | One of `en`, `de`, `ru`, `ja`, `fr`, `cn`, `es`, `cs`, `it`, `ko`, `fa`, `pt`. |
+| `lang` | Single and bulk | One of `en`, `de`, `ru`, `ja`, `fr`, `cn`, `es`, `cs`, `it`, `ko`, `fa`, `pt`, `ar`. |
 | `include` | Single and bulk | Collection of module names such as `security`, `abuse`, `user_agent`, `hostname`, `liveHostname`, `hostnameFallbackLive`, `geo_accuracy`, `dma_code`, or `*`. |
 | `fields` | Single and bulk | Collection of field paths to keep, for example `location.country_name` or `security.threat_score`. |
 | `excludes` | Single and bulk | Collection of field paths to remove from the response. |
@@ -327,7 +327,7 @@ Console.WriteLine(response.Metadata.FirstHeaderValue("content-type"));
 
 ## Errors
 
-The SDK throws typed exceptions instead of returning error objects for failed HTTP responses.
+The SDK throws typed exceptions instead of returning error objects for failed HTTP responses. SDK error messages replace your configured API key with `[REDACTED]`. SDK error types and HTTP status codes stay the same. Some technical error details may be shortened to keep the key hidden.
 
 | Exception | When it happens |
 |-----------|-----------------|

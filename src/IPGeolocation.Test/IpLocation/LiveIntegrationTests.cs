@@ -8,6 +8,19 @@ namespace IPGeolocation.Test.IpLocation;
 public sealed class LiveIntegrationTests
 {
     [SkippableFact]
+    public async Task ArabicLookupsLive()
+    {
+        var apiKey = LiveTestGuard.RequirePaidKeyForLive();
+        using var client = new IpGeolocationClient(new IpGeolocationClientConfig(apiKey: apiKey));
+
+        var single = await client.LookupIpGeolocationAsync(new LookupIpGeolocationRequest(ip: "8.8.8.8", lang: "ar"));
+        var bulk = await client.BulkLookupIpGeolocationAsync(new BulkLookupIpGeolocationRequest(new[] { "8.8.8.8" }, lang: "ar"));
+
+        Assert.Matches(@"[\u0600-\u06ff]", single.Data.Location?.CountryName ?? string.Empty);
+        Assert.Matches(@"[\u0600-\u06ff]", Assert.IsType<BulkLookupSuccess>(Assert.Single(bulk.Data)).Data.Location?.CountryName ?? string.Empty);
+    }
+
+    [SkippableFact]
     public async Task SingleLookupLive()
     {
         var apiKey = LiveTestGuard.RequireFreeKey();

@@ -6,6 +6,69 @@ namespace IPGeolocation.Test.IpLocation;
 
 public sealed class SerDeTests
 {
+    [Theory]
+    [InlineData("null")]
+    [InlineData("[]")]
+    [InlineData("1")]
+    [InlineData("\"text\"")]
+    [InlineData("")]
+    [InlineData("{")]
+    public void InvalidSingleRootsUseSerializationException(string body)
+    {
+        Assert.Throws<SerializationException>(() => SerDe.ParseSingleLookup(body));
+    }
+
+    [Theory]
+    [InlineData("[null]")]
+    [InlineData("[1]")]
+    [InlineData("[true]")]
+    [InlineData("[\"text\"]")]
+    [InlineData("[[]]")]
+    [InlineData("{}")]
+    [InlineData("null")]
+    [InlineData("[")]
+    public void InvalidBulkShapesUseSerializationException(string body)
+    {
+        Assert.Throws<SerializationException>(() => SerDe.ParseBulkLookup(body));
+    }
+
+    [Theory]
+    [InlineData("{\"error\":null}")]
+    [InlineData("{\"error\":true}")]
+    [InlineData("{\"error\":1}")]
+    [InlineData("{\"error\":[]}")]
+    [InlineData("{\"error\":\"failure\"}")]
+    [InlineData("{\"message\":\" \"}")]
+    [InlineData("{\"error\":{\"message\":\"\"}}")]
+    public void UnusualErrorBodiesPreserveHttpStatus(string body)
+    {
+        var error = SerDe.ToApiException(401, body);
+        Assert.IsType<UnauthorizedException>(error);
+        Assert.False(string.IsNullOrWhiteSpace(error.Message));
+    }
+
+    [Theory]
+    [InlineData("[{\"error\":null}]")]
+    [InlineData("[{\"error\":true}]")]
+    [InlineData("[{\"error\":\"failure\"}]")]
+    [InlineData("[{\"message\":\" \"}]")]
+    [InlineData("[{\"error\":{\"message\":\"\"}}]")]
+    public void UnusualBulkErrorsHaveUsableMessages(string body)
+    {
+        var result = SerDe.ParseBulkLookup(body);
+        var error = Assert.IsType<BulkLookupError>(Assert.Single(result));
+        Assert.False(string.IsNullOrWhiteSpace(error.Error.Message));
+    }
+
+    [Fact]
+    public void InvalidOptionalObjectsRemainIgnored()
+    {
+        var result = SerDe.ParseSingleLookup("{\"ip\":\"8.8.8.8\",\"location\":123,\"security\":[]}");
+        Assert.Equal("8.8.8.8", result.Ip);
+        Assert.Null(result.Location);
+        Assert.Null(result.Security);
+    }
+
     [Fact]
     public void ParsesMixedBulkSuccessAndError()
     {
