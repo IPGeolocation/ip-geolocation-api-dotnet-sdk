@@ -144,10 +144,10 @@ Paid plans still need `include` for optional modules. `fields` and `excludes` on
 | `apiKey` | `string?` | unset | Required for bulk lookup. Optional for single lookup if `requestOrigin` is set. |
 | `requestOrigin` | `string?` | unset | Must be an absolute `http` or `https` origin. |
 | `baseUrl` | `string` | `https://api.ipgeolocation.io` | Override the API base URL. |
-| `connectTimeout` | `TimeSpan` | `10` seconds | Time to open the connection. |
-| `readTimeout` | `TimeSpan` | `30` seconds | Time to wait while reading the response body. |
+| `connectTimeout` | `TimeSpan` | `10` seconds | Time to connect and receive response headers. |
+| `readTimeout` | `TimeSpan` | `30` seconds | Time to wait for the next part of the response. |
 
-The client constructor accepts an `IpGeolocationClientConfig`. Timeouts are validated before the request is sent.
+The client constructor accepts an `IpGeolocationClientConfig`. Both timeouts must be greater than zero.
 
 ## Available Methods
 
