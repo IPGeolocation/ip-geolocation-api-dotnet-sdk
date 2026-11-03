@@ -7,7 +7,7 @@ internal static class RequestNormalizer
 {
     private static readonly HashSet<string> AllowedLanguages = new(StringComparer.OrdinalIgnoreCase)
     {
-        "en", "de", "ru", "ja", "fr", "cn", "es", "cs", "it", "ko", "fa", "pt"
+        "en", "de", "ru", "ja", "fr", "cn", "es", "cs", "it", "ko", "fa", "pt", "ar"
     };
 
     internal static string? NormalizeLookupIp(string? value)
@@ -67,7 +67,7 @@ internal static class RequestNormalizer
 
         if (!AllowedLanguages.Contains(normalized))
         {
-            throw new ValidationException("lang must be one of: en, de, ru, ja, fr, cn, es, cs, it, ko, fa, pt");
+            throw new ValidationException("lang must be one of: en, de, ru, ja, fr, cn, es, cs, it, ko, fa, pt, ar");
         }
 
         return normalized.ToLowerInvariant();

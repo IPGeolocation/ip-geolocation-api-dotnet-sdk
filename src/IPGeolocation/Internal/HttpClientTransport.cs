@@ -65,7 +65,7 @@ internal sealed class HttpClientTransport : HttpTransport
         HttpResponseMessage response;
         using (var connectCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
         {
-            connectCts.CancelAfter(request.ConnectTimeout);
+            SetTimeout(connectCts, request.ConnectTimeout);
 
             try
             {
@@ -125,7 +125,7 @@ internal sealed class HttpClientTransport : HttpTransport
             int bytesRead;
             using (var readCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken))
             {
-                readCts.CancelAfter(readTimeout);
+                SetTimeout(readCts, readTimeout);
 
                 try
                 {
@@ -159,5 +159,17 @@ internal sealed class HttpClientTransport : HttpTransport
         }
 
         return Encoding.UTF8.GetString(buffer.ToArray());
+    }
+
+    internal static void SetTimeout(CancellationTokenSource source, TimeSpan timeout)
+    {
+        try
+        {
+            source.CancelAfter(timeout < TimeSpan.FromMilliseconds(1) ? TimeSpan.FromMilliseconds(1) : timeout);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            source.CancelAfter(int.MaxValue);
+        }
     }
 }

@@ -60,16 +60,7 @@ public sealed class IpGeolocationClient : IDisposable
         ValidateLookupRequestBase();
         SerDe.ValidateJsonOutput(typedRequest.Output);
 
-        var (response, durationMs) = await ExecuteWithMetricsAsync(BuildLookupHttpRequest(typedRequest), cancellationToken).ConfigureAwait(false);
-        if (!IsSuccessStatus(response.StatusCode))
-        {
-            throw SerDe.ToApiException(response.StatusCode, response.Body);
-        }
-
-        return new ApiResponse<IpGeolocationResponse>(
-            SerDe.ParseSingleLookup(response.Body),
-            SerDe.ToMetadata(response.StatusCode, durationMs, response.Headers)
-        );
+        return await ExecuteAsync(() => BuildLookupHttpRequest(typedRequest), SerDe.ParseSingleLookup, cancellationToken).ConfigureAwait(false);
     }
 
     public async Task<ApiResponse<string>> LookupIpGeolocationRawAsync(
@@ -80,16 +71,7 @@ public sealed class IpGeolocationClient : IDisposable
         var typedRequest = request ?? new LookupIpGeolocationRequest();
         ValidateLookupRequestBase();
 
-        var (response, durationMs) = await ExecuteWithMetricsAsync(BuildLookupHttpRequest(typedRequest), cancellationToken).ConfigureAwait(false);
-        if (!IsSuccessStatus(response.StatusCode))
-        {
-            throw SerDe.ToApiException(response.StatusCode, response.Body);
-        }
-
-        return new ApiResponse<string>(
-            response.Body,
-            SerDe.ToMetadata(response.StatusCode, durationMs, response.Headers)
-        );
+        return await ExecuteAsync(() => BuildLookupHttpRequest(typedRequest), body => body, cancellationToken).ConfigureAwait(false);
     }
 
     public async Task<ApiResponse<IReadOnlyList<BulkLookupResult>>> BulkLookupIpGeolocationAsync(
@@ -104,16 +86,7 @@ public sealed class IpGeolocationClient : IDisposable
         ValidateBulkRequestBase();
         SerDe.ValidateJsonOutput(request.Output);
 
-        var (response, durationMs) = await ExecuteWithMetricsAsync(BuildBulkHttpRequest(request), cancellationToken).ConfigureAwait(false);
-        if (!IsSuccessStatus(response.StatusCode))
-        {
-            throw SerDe.ToApiException(response.StatusCode, response.Body);
-        }
-
-        return new ApiResponse<IReadOnlyList<BulkLookupResult>>(
-            SerDe.ParseBulkLookup(response.Body),
-            SerDe.ToMetadata(response.StatusCode, durationMs, response.Headers)
-        );
+        return await ExecuteAsync(() => BuildBulkHttpRequest(request), body => SerDe.ParseBulkLookup(body, _config.ApiKey), cancellationToken).ConfigureAwait(false);
     }
 
     public async Task<ApiResponse<string>> BulkLookupIpGeolocationRawAsync(
@@ -127,16 +100,7 @@ public sealed class IpGeolocationClient : IDisposable
         }
         ValidateBulkRequestBase();
 
-        var (response, durationMs) = await ExecuteWithMetricsAsync(BuildBulkHttpRequest(request), cancellationToken).ConfigureAwait(false);
-        if (!IsSuccessStatus(response.StatusCode))
-        {
-            throw SerDe.ToApiException(response.StatusCode, response.Body);
-        }
-
-        return new ApiResponse<string>(
-            response.Body,
-            SerDe.ToMetadata(response.StatusCode, durationMs, response.Headers)
-        );
+        return await ExecuteAsync(() => BuildBulkHttpRequest(request), body => body, cancellationToken).ConfigureAwait(false);
     }
 
     private void EnsureNotDisposed()
@@ -247,12 +211,26 @@ public sealed class IpGeolocationClient : IDisposable
         return headers;
     }
 
-    private async Task<(HttpResponseData Response, int DurationMs)> ExecuteWithMetricsAsync(HttpRequestData request, CancellationToken cancellationToken)
+    private async Task<ApiResponse<T>> ExecuteAsync<T>(Func<HttpRequestData> buildRequest, Func<string, T> parse, CancellationToken cancellationToken)
     {
-        var stopwatch = Stopwatch.StartNew();
-        var response = await _transport.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        stopwatch.Stop();
-        return (response, (int)stopwatch.ElapsedMilliseconds);
+        try
+        {
+            var request = buildRequest();
+            var stopwatch = Stopwatch.StartNew();
+            var response = await _transport.SendAsync(request, cancellationToken).ConfigureAwait(false);
+            stopwatch.Stop();
+            if (!IsSuccessStatus(response.StatusCode))
+            {
+                throw SerDe.ToApiException(response.StatusCode, response.Body);
+            }
+
+            return new ApiResponse<T>(parse(response.Body),
+                SerDe.ToMetadata(response.StatusCode, (int)Math.Min(stopwatch.ElapsedMilliseconds, int.MaxValue), response.Headers));
+        }
+        catch (Exception error) when (_config.ApiKey is not null)
+        {
+            throw ErrorSanitizer.Sanitize(error, _config.ApiKey);
+        }
     }
 
     private static bool IsSuccessStatus(int statusCode)

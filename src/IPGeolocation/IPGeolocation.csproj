@@ -13,7 +13,7 @@
     <AssemblyName>IPGeolocation</AssemblyName>
     <RootNamespace>IPGeolocation</RootNamespace>
     <PackageId>IPGeoLocation.IPGeolocation</PackageId>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Authors>IPGeolocation.io</Authors>
     <Company>IPGeolocation.io</Company>
     <AssemblyTitle>IPGeolocation .NET SDK</AssemblyTitle>

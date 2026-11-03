@@ -5,6 +5,16 @@ namespace IPGeolocation.Test.IpLocation;
 
 public sealed class RequestModelTests
 {
+    [Theory]
+    [InlineData("ar")]
+    [InlineData("AR")]
+    [InlineData(" ar ")]
+    public void AcceptsArabicForSingleAndBulk(string language)
+    {
+        Assert.Equal("ar", new LookupIpGeolocationRequest(lang: language).Lang);
+        Assert.Equal("ar", new BulkLookupIpGeolocationRequest(new[] { "8.8.8.8" }, lang: language).Lang);
+    }
+
     [Fact]
     public void LookupRequestNormalizesListsAndHeaders()
     {

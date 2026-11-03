@@ -6,6 +6,31 @@ namespace IPGeolocation.Test.IpLocation;
 
 public sealed class IpGeolocationClientConfigTests
 {
+    [Theory]
+    [InlineData(1L)]
+    [InlineData(9999L)]
+    [InlineData(10000L)]
+    [InlineData(21474836470000L)]
+    [InlineData(long.MaxValue)]
+    public void KeepsConfiguredPositiveTimeoutValues(long ticks)
+    {
+        var value = TimeSpan.FromTicks(ticks);
+        var config = new IpGeolocationClientConfig(connectTimeout: value, readTimeout: value);
+        Assert.Equal(value, config.ConnectTimeout);
+        Assert.Equal(value, config.ReadTimeout);
+    }
+
+    [Theory]
+    [InlineData(0L)]
+    [InlineData(-1L)]
+    [InlineData(-10000L)]
+    [InlineData(long.MinValue)]
+    public void RejectsNonPositiveTimeouts(long ticks)
+    {
+        Assert.Throws<ValidationException>(() => new IpGeolocationClientConfig(connectTimeout: TimeSpan.FromTicks(ticks)));
+        Assert.Throws<ValidationException>(() => new IpGeolocationClientConfig(readTimeout: TimeSpan.FromTicks(ticks)));
+    }
+
     [Fact]
     public void NormalizesRequestOriginAndBaseUrl()
     {
